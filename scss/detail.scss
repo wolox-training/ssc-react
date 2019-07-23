@@ -2,8 +2,10 @@
 @import './fonts/variables';
 
 .container-detail {
-  display: flex;
+  display: inline-flex;
+  padding: 25px;
   margin: 25px;
+  box-shadow: 4px 4px 10px 1px $detail-grey;
 }
 
 .image-container {
@@ -31,6 +33,9 @@
 
 .title-container {
   margin-bottom: 52px;
+  border-bottom: 5px solid $detail-green;
+  width: 640px;
+  padding-bottom: 10px;
 }
 
 .text-detail {

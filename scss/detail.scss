@@ -8,17 +8,30 @@
   padding: 25px;
 }
 
-.img-badge{
-  background: url(../assets/badge.png) no-repeat center;
+.image-cover {
+  background: url(../assets/book-cover.png) no-repeat center;
   background-size: cover;
+  height: 100%;
+  width: 100%;
 }
 
 .image-container {
-  background: url(../assets/book-cover.png) no-repeat center;
-  background-size: cover;
-  height: 368px;
   margin-right: 54px;
+  height: 368px;
+  position: relative;
   width: 261px;
+
+  &::after {
+    background: url(../assets/badge.png) no-repeat center;
+    background-size: cover;
+    content: "";
+    height: 143px;
+    right: -15px;
+    position: absolute;
+    transform: rotate(5deg);
+    top: -15px;
+    width: 96px;
+  }
 }
 
 .sub-title {

@@ -1,12 +1,26 @@
 @import './colors/variables';
 @import './fonts/variables';
 
+.container-detail{
+  display: flex;
+  margin: 25px;
+}
+
 .title {
   font-size: $title-detail;
 }
 
 .title-container {
   margin-bottom: 52px;
+}
+
+.image-container{
+  width: 261px;
+  height: 368px;
+  background-image: url(../assets/book-cover.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  margin-right: 54px;
 }
 
 .text-detail {

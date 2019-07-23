@@ -1,6 +1,30 @@
 @import './colors/variables';
 @import './fonts/variables';
 
+.container-detail {
+  display: flex;
+  margin: 25px;
+}
+
+.image-container {
+  width: 261px;
+  height: 368px;
+  background: url(../assets/book-cover.png) no-repeat center;
+  background-size: cover;
+  margin-right: 54px;
+}
+
+.sub-title {
+  font-size: $subtitle-detail;
+  color: $detail-grey;
+}
+
+.sub-title,
+.title,
+.title-text {
+  font-weight: 600;
+}
+
 .title {
   font-size: $title-detail;
 }
@@ -20,15 +44,4 @@
   color: $detail-black;
   padding-right: 10px;
   font-size: $text-detail;
-}
-
-.sub-title {
-  font-size: $subtitle-detail;
-  color: $detail-grey;
-}
-
-.title,
-.title-text, 
-.sub-title {
-  font-weight: 600;
 }

@@ -2,10 +2,10 @@
 @import './fonts/variables';
 
 .container-detail {
-  display: inline-flex;
-  padding: 25px;
-  margin: 25px;
   box-shadow: 4px 4px 10px 1px $detail-grey;
+  display: inline-flex;
+  margin: 25px;
+  padding: 25px;
 }
 
 .img-badge{
@@ -14,16 +14,16 @@
 }
 
 .image-container {
-  width: 261px;
-  height: 368px;
   background: url(../assets/book-cover.png) no-repeat center;
   background-size: cover;
+  height: 368px;
   margin-right: 54px;
+  width: 261px;
 }
 
 .sub-title {
-  font-size: $subtitle-detail;
   color: $detail-grey;
+  font-size: $subtitle-detail;
 }
 
 .sub-title,
@@ -37,21 +37,21 @@
 }
 
 .title-container {
-  margin-bottom: 52px;
   border-bottom: 5px solid $detail-green;
-  width: 640px;
+  margin-bottom: 52px;
   padding-bottom: 10px;
+  width: 640px;
 }
 
 .text-detail {
   color: $detail-grey;
+  display: block;
   font-size: $text-detail;
   margin-bottom: 36px;
-  display: block;
 }
 
 .title-text {
   color: $detail-black;
-  padding-right: 10px;
   font-size: $text-detail;
+  padding-right: 10px;
 }

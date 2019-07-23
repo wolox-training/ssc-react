@@ -1,0 +1,34 @@
+@import './colors/variables';
+@import './fonts/variables';
+
+.title {
+  font-size: $title-detail;
+}
+
+.title-container {
+  margin-bottom: 52px;
+}
+
+.text-detail {
+  color: $detail-grey;
+  font-size: $text-detail;
+  margin-bottom: 36px;
+  display: block;
+}
+
+.title-text {
+  color: $detail-black;
+  padding-right: 10px;
+  font-size: $text-detail;
+}
+
+.sub-title {
+  font-size: $subtitle-detail;
+  color: $detail-grey;
+}
+
+.title,
+.title-text, 
+.sub-title {
+  font-weight: 600;
+}

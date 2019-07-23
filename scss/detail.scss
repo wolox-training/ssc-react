@@ -8,6 +8,11 @@
   box-shadow: 4px 4px 10px 1px $detail-grey;
 }
 
+.img-badge{
+  background: url(../assets/badge.png) no-repeat center;
+  background-size: cover;
+}
+
 .image-container {
   width: 261px;
   height: 368px;

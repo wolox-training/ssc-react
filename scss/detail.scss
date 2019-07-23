@@ -1,34 +1,34 @@
-$detail-grey: #828282;
-$detail-black: #000;
+@import './colors/variables';
+@import './fonts/variables';
 
-.title{
-  font-size: 32px;
+.title {
+  font-size: $title-detail;
 }
 
-.title-container{
+.title-container {
   margin-bottom: 52px;
 }
 
-.text-detail{
+.text-detail {
   color: $detail-grey;
-  font-size: 20px;
+  font-size: $text-detail;
   margin-bottom: 36px;
+  display: block;
 }
 
-.title-text{
+.title-text {
   color: $detail-black;
   padding-right: 10px;
-  font-size: 20px;
+  font-size: $text-detail;
 }
 
-.sub-title{
-  font-size: 28px;
-  margin: 0;
-  padding: 0;
+.sub-title {
+  font-size: $subtitle-detail;
+  color: $detail-grey;
 }
 
 .title,
 .title-text, 
-.sub-title{
+.sub-title {
   font-weight: 600;
 }

@@ -3,10 +3,17 @@
 }
 
 .container-book {
-  box-shadow: 3px 3px 6px 1px $detail-grey;
+  box-shadow: 3px 3px 5px 1px $detail-grey;
   display: inline-block;
-  padding: 28px;
+  height: 300px;
   margin-top: 36px;
+  padding: 28px;
+  width: 198px;
+}
+
+.container-background {
+  position: relative;
+  top: 70px;
 }
 
 .container-list {
@@ -14,8 +21,10 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  margin: 0 auto;
   max-width: 900px;
+  margin: 0 auto;
+  position: relative;
+  top: 70px;
   width: 100%;
 }
 
@@ -54,7 +63,6 @@
   color: $detail-black;
   display: block;
   font-size: $subtitle-list;
-  font-weight: 600;
   margin-bottom: 8px;
 }
 

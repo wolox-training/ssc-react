@@ -1,8 +1,15 @@
+.btn-logout {
+  margin: 0 36px;
+  font-size: $text-button;
+}
+
 .container-book {
-  box-shadow: 4px 4px 10px 1px #828282;
+  box-shadow: 4px 4px 10px 1px $detail-grey;
   display: inline-block;
   margin: 36px;
   padding: 28px;
+  width: 198px;
+  height: 300px;
 }
 
 .container-list {
@@ -12,6 +19,26 @@
   max-width: 1330px;
   margin: 0 auto;
   width: 100%;
+  height: calc(100vh - 70px);
+  position: relative;
+  top: 70px;
+  align-items: center;
+}
+
+.container-nav {
+  width: 100%;
+  max-width: 1330px;
+  margin: auto;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 28px;
+  align-items: center;
+}
+
+.image-nav {
+  width: 212px;
+  margin: 0 36px;
 }
 
 .image-list {
@@ -20,6 +47,15 @@
   height: 200px;
   margin-bottom: 12px;
   width: 142px;
+}
+
+.navbar {
+  width: 100%;
+  height: 70px;
+  display: flex;
+  position: fixed;
+  box-shadow: 4px 4px 10px 1px $detail-grey;
+  background: $color-white;border-top: 6px solid $primary-color;
 }
 
 .title-list {

@@ -1,11 +1,32 @@
 @import './colors/variables';
 @import './fonts/variables';
 
+.btn-return {
+  font-size: $text-detail;
+  width: 120px;
+
+  &::before {
+    content: "";
+    background: url(../assets/back-arrow-20.png);
+    display: inline-block;
+    height: 20px;
+    vertical-align: middle;
+    width: 20px;
+  }
+}
+
+.container {
+  padding: 46px;
+  background: $background-color;
+}
+
 .container-detail {
   box-shadow: 3px 3px 5px 1px $detail-grey;
-  display: inline-flex;
-  margin: 25px;
+  background: $color-white;
+  display: flex;
+  margin: 44px auto;
   padding: 25px;
+  width: 1000px;
 }
 
 .image-cover {

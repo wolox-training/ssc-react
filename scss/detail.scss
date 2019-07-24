@@ -8,16 +8,9 @@
   padding: 25px;
 }
 
-.image-cover {
-  background: url(../assets/book-cover.png) no-repeat center;
-  background-size: cover;
-  height: 100%;
-  width: 100%;
-}
-
 .image-container {
-  margin-right: 54px;
   height: 368px;
+  margin-right: 54px;
   position: relative;
   width: 261px;
 
@@ -26,8 +19,8 @@
     background-size: cover;
     content: "";
     height: 143px;
-    right: -15px;
     position: absolute;
+    right: -15px;
     transform: rotate(5deg);
     top: -15px;
     width: 96px;

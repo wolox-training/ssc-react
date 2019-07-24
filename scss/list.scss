@@ -1,15 +1,15 @@
 .container-book {
-  box-shadow: 4px 4px 10px 1px #828282;
+  box-shadow: 3px 3px 6px 1px $detail-grey;
   display: inline-block;
-  margin: 36px;
   padding: 28px;
+  margin-top: 36px;
 }
 
 .container-list {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
-  max-width: 1330px;
+  justify-content: space-between;
+  max-width: 900px;
   margin: 0 auto;
   width: 100%;
 }

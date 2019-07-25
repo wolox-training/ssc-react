@@ -1,17 +1,31 @@
+.btn-logout {
+  font-size: $text-button;
+}
+
 .container-book {
-  box-shadow: 3px 3px 6px 1px $detail-grey;
+  background: $color-white;
+  box-shadow: 3px 3px 5px 1px $detail-grey;
   display: inline-block;
-  padding: 28px;
+  height: 300px;
   margin-top: 36px;
+  padding: 28px;
+  width: 198px;
 }
 
 .container-list {
+  align-items: center;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   margin: 0 auto;
   max-width: 900px;
+  position: relative;
+  top: 70px;
   width: 100%;
+}
+
+.image-nav {
+  width: 212px;
 }
 
 .image-list {
@@ -22,14 +36,30 @@
   width: 142px;
 }
 
+.navbar {
+  align-items: center;
+  background: $color-white;border-top: 6px solid $primary-color;
+  box-shadow: 3px 3px 5px 1px $detail-grey;
+  display: flex;
+  height: 70px;
+  justify-content: space-between;
+  padding: 0 24%;
+  position: fixed;
+  width: 100%;
+  z-index: 2;
+}
+
 .title-list {
   color: $detail-black;
   display: block;
+  font-family: "Roboto";
   font-size: $subtitle-list;
+  font-weight: 500;
   margin-bottom: 8px;
 }
 
 .text-list {
   color: $detail-grey;
+  font-family: "Roboto";
   font-size: $text-list;
 }

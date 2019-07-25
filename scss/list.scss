@@ -1,0 +1,35 @@
+.container-book {
+  box-shadow: 3px 3px 6px 1px $detail-grey;
+  display: inline-block;
+  padding: 28px;
+  margin-top: 36px;
+}
+
+.container-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 0 auto;
+  max-width: 900px;
+  width: 100%;
+}
+
+.image-list {
+  background: url(../assets/book-cover.png) no-repeat center;
+  background-size: cover;
+  height: 200px;
+  margin-bottom: 12px;
+  width: 142px;
+}
+
+.title-list {
+  color: $detail-black;
+  display: block;
+  font-size: $subtitle-list;
+  margin-bottom: 8px;
+}
+
+.text-list {
+  color: $detail-grey;
+  font-size: $text-list;
+}

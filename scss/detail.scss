@@ -2,6 +2,7 @@
 @import './fonts/variables';
 
 .btn-return {
+  font-family: 'Roboto';
   font-size: $text-detail;
   width: 120px;
 
@@ -17,7 +18,6 @@
 
 .container {
   padding: 46px;
-  background: $background-color;
 }
 
 .container-detail {
@@ -58,7 +58,8 @@
 .sub-title,
 .title,
 .title-text {
-  font-weight: 600;
+  font-family: "Roboto";
+  font-weight: 500;
 }
 
 .title {
@@ -75,7 +76,9 @@
 .text-detail {
   color: $detail-grey;
   display: block;
+  font-family: "Roboto";
   font-size: $text-detail;
+  font-weight: 400;
   margin-bottom: 36px;
 }
 

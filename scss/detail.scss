@@ -31,7 +31,7 @@
 
 .image-container {
   background: url(../assets/book-cover.png) no-repeat center;
-  background-size: cover;
+  background-size: contain;
   height: 368px;
   margin-right: 54px;
   position: relative;
@@ -86,4 +86,18 @@
   color: $detail-black;
   font-size: $text-detail;
   padding-right: 10px;
+}
+
+@media only screen and (max-width: 1024px) {
+  .image-container {
+    width: 212px;
+    height: 300px;
+    margin: 0 auto;
+  }
+
+  .container-detail {
+    flex-direction: column;
+    height: 570px;
+    width: 336px;
+  }
 }

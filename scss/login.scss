@@ -1,0 +1,81 @@
+.button-login, 
+.button-signup {
+  border-radius: 5px;
+  display: block;
+  font-family: Roboto;
+  font-size: $subtitle-list;
+  height: 32px;
+  padding: 5px;
+  position: relative;
+  text-align: center;
+  width: 100%;
+}
+
+.button-login {
+  background: $detail-green;
+  color: $color-white;
+  margin-top: 24px;
+
+  &:hover {
+    color: $color-white;
+  }
+}
+
+.button-signup {
+  background: $background-color;
+  border: 2px solid $detail-green;
+  color: $detail-green;
+
+  &:hover {
+    color: $detail-green;;
+  }
+}
+
+.container-card {
+  align-items: center;
+  background: $background-color;
+  border-top: 8px solid $primary-color;
+  display: flex;
+  flex-direction: column;
+  height: 400px;
+  justify-content: space-around;
+  width: 300px;
+}
+
+.container-form {
+  width: 252px;
+}
+
+.container-login {
+  align-items: center;
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+}
+
+.image-logo {
+  height: 70px;
+  width: 215px;
+}
+
+.inputs {
+  border-radius: 5px;
+  height: 32px;
+  margin: 8px 0;
+  width: 100%;
+}
+
+.labels {
+  display: block;
+  font-size: $subtitle-list;
+  font-family: Roboto;
+}
+
+.separator {
+  background: $border-grey;
+  content: "";
+  display: block;
+  height: 2px;
+  margin: 16px 0;
+  width: 100%;
+}

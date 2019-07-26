@@ -6,11 +6,9 @@
 }
 
 .btn-return {
-  align-self: center;
   font-family: 'Roboto';
   font-size: $text-detail;
-  grid-column-start: 2;
-  width: 90px;
+  width: 120px;
 
   &::before {
     content: "";
@@ -23,52 +21,43 @@
 }
 
 .container {
-  display: grid;
-  grid-template-columns: auto 40px 853px auto;
-  grid-template-rows: 100px 570px;
+  display: flex;
+  flex-direction: column;
+  padding: 46px;
 }
 
 .container-detail {
-  align-items: center;
-  background: $color-white;
-  box-shadow: 3px 3px 5px 1px $detail-grey;
+  box-shadow: 3px 3px 5px 1px #828282;
+  background: #FFF;
   display: grid;
-  grid-column-start: 3;
-  grid-column-end: 4;
-  grid-row-start: 2;
-  grid-row-end: 3;
-  grid-template-columns: 340px 513px;
-  grid-template-areas:  'nav nav' 
-                        'image main';
-  justify-items: center;
-  padding: 25px 0;
-  width: 853px;
+  margin: 44px auto;
+  padding: 25px;
+  align-items: center;
+  width: 1000px;
+  grid-template-rows: 79px auto;
+  grid-template-columns: 312px auto;
+  grid-template-areas: "image title" "image main";
 }
 
 .image-container {
   background: url(../assets/book-cover.png) no-repeat center;
   background-size: contain;
-  grid-area: image;
   height: 368px;
   position: relative;
   width: 261px;
+  grid-area: image;
 
   &::after {
     background: url(../assets/badge.png) no-repeat center;
     background-size: contain;
     content: "";
-    height: 132px;
+    height: 143px;
     position: absolute;
     right: -20px;
     transform: rotate(15deg);
     top: -30px;
     width: 80px;
   }
-}
-
-.text-container {
-  grid-area: main;
-  justify-self: start;
 }
 
 .sub-title {
@@ -84,16 +73,14 @@
 }
 
 .title {
-  display: block;
   font-size: $title-detail;
 }
 
 .title-container {
-  margin-bottom: 52px;
-  max-width: 100%;
-  grid-area: nav;
+  border-bottom: 5px solid $detail-green;
   padding-bottom: 10px;
-  text-align: center;
+  width: 640px;
+  grid-area: title;
 }
 
 .text-detail {
@@ -111,7 +98,32 @@
   padding-right: 10px;
 }
 
-@media only screen and (max-width: 1024px) {
+@media only screen and (max-width: 992px) {
+  .btn-return {
+    padding: 20px 0 0 20px;
+  }
+
+  .container {
+    padding: 0px;
+  }
+
+  .container-detail {
+    grid-template-areas: "title title" "image main";
+    width: 853px;
+  }
+
+  .title {
+    display: block;
+  }
+
+  .title-container {
+    border: none;
+    text-align: center;
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: 768px) {
   .btn-return {
     align-self: center;
   }
@@ -121,17 +133,18 @@
   }
 
   .container-detail {
-    flex-direction: column;
     height: 570px;
-    justify-content: space-around;
     padding: 18px;
     width: 336px;
+    grid-template-rows: 60px 345px auto;
+    grid-template-columns: auto;
+    grid-template-areas: "title" "image" "main";
   }
 
   .image-container {
+    width: 212px;
     height: 300px;
     margin: 0 auto;
-    width: 212px;
 
     &::after {
       right: -12px;
@@ -144,12 +157,21 @@
     font-size: $subtitle-list;
   }
 
+  .text-container {
+    border-top: 3px solid $detail-green;
+    padding-top: 20px;
+  }
+
   .title {
     font-size: $title-responsive;
+    display: block;
   }
 
   .title-container {
     width: 100%;
+    border: none;
+    margin: 0;
+    text-align: center;
   }
 
   .text-detail,
@@ -157,8 +179,7 @@
     font-size: $text-list
   }
 
-  .text-detail,
-  .title-container {
+  .text-detail {
     margin-bottom: 18px;
   }
 }

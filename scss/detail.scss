@@ -27,25 +27,25 @@
 }
 
 .container-detail {
+  align-items: center;
   box-shadow: 3px 3px 5px 1px #828282;
   background: #FFF;
   display: grid;
-  margin: 44px auto;
-  padding: 25px;
-  align-items: center;
-  width: 1000px;
   grid-template-rows: 79px auto;
   grid-template-columns: 312px auto;
   grid-template-areas: "image title" "image main";
+  margin: 44px auto;
+  padding: 25px;
+  width: 1000px;
 }
 
 .image-container {
   background: url(../assets/book-cover.png) no-repeat center;
   background-size: contain;
+  grid-area: image;
   height: 368px;
   position: relative;
   width: 261px;
-  grid-area: image;
 
   &::after {
     background: url(../assets/badge.png) no-repeat center;
@@ -78,9 +78,9 @@
 
 .title-container {
   border-bottom: 5px solid $detail-green;
+  grid-area: title;
   padding-bottom: 10px;
   width: 640px;
-  grid-area: title;
 }
 
 .text-detail {
@@ -133,12 +133,12 @@
   }
 
   .container-detail {
-    height: 570px;
-    padding: 18px;
-    width: 336px;
     grid-template-rows: 60px 345px auto;
     grid-template-columns: auto;
     grid-template-areas: "title" "image" "main";
+    height: 570px;
+    padding: 18px;
+    width: 336px;
   }
 
   .image-container {
@@ -163,15 +163,15 @@
   }
 
   .title {
-    font-size: $title-responsive;
     display: block;
+    font-size: $title-responsive;
   }
 
   .title-container {
-    width: 100%;
     border: none;
     margin: 0;
     text-align: center;
+    width: 100%;  
   }
 
   .text-detail,

@@ -1,6 +1,10 @@
 @import './colors/variables';
 @import './fonts/variables';
 
+@mixin heightBox($width-badge){
+  width: calc(80px - #{$width-badge});
+}
+
 .btn-return {
   font-family: 'Roboto';
   font-size: $text-detail;
@@ -17,6 +21,8 @@
 }
 
 .container {
+  display: flex;
+  flex-direction: column;
   padding: 46px;
 }
 
@@ -89,15 +95,53 @@
 }
 
 @media only screen and (max-width: 1024px) {
-  .image-container {
-    width: 212px;
-    height: 300px;
-    margin: 0 auto;
+  .btn-return {
+    align-self: center;
+  }
+
+  .container {
+    flex-direction: column-reverse;
   }
 
   .container-detail {
     flex-direction: column;
     height: 570px;
+    justify-content: space-around;
+    padding: 18px;
     width: 336px;
+  }
+
+  .image-container {
+    width: 212px;
+    height: 300px;
+    margin: 0 auto;
+
+    &::after {
+      right: -12px;
+      top: -45px;
+      @include heightBox(80px * 0.3)
+    }
+  }
+
+  .title {
+    font-size: $title-responsive;
+  }
+
+  .sub-title {
+    font-size: $subtitle-list;
+  }
+
+  .title-container {
+    width: 100%;
+  }
+
+  .text-detail,
+  .title-text{
+    font-size: $text-list
+  }
+
+  .text-detail,
+  .title-container {
+    margin-bottom: 18px;
   }
 }

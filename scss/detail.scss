@@ -6,9 +6,11 @@
 }
 
 .btn-return {
+  align-self: center;
   font-family: 'Roboto';
   font-size: $text-detail;
-  width: 120px;
+  grid-column-start: 2;
+  width: 90px;
 
   &::before {
     content: "";
@@ -21,25 +23,33 @@
 }
 
 .container {
-  display: flex;
-  flex-direction: column;
-  padding: 46px;
+  display: grid;
+  grid-template-columns: auto 40px 853px auto;
+  grid-template-rows: 100px 570px;
 }
 
 .container-detail {
-  box-shadow: 3px 3px 5px 1px $detail-grey;
+  align-items: center;
   background: $color-white;
-  display: flex;
-  margin: 44px auto;
-  padding: 25px;
-  width: 1000px;
+  box-shadow: 3px 3px 5px 1px $detail-grey;
+  display: grid;
+  grid-column-start: 3;
+  grid-column-end: 4;
+  grid-row-start: 2;
+  grid-row-end: 3;
+  grid-template-columns: 340px 513px;
+  grid-template-areas:  'nav nav' 
+                        'image main';
+  justify-items: center;
+  padding: 25px 0;
+  width: 853px;
 }
 
 .image-container {
   background: url(../assets/book-cover.png) no-repeat center;
   background-size: contain;
+  grid-area: image;
   height: 368px;
-  margin-right: 54px;
   position: relative;
   width: 261px;
 
@@ -47,13 +57,18 @@
     background: url(../assets/badge.png) no-repeat center;
     background-size: contain;
     content: "";
-    height: 143px;
+    height: 132px;
     position: absolute;
     right: -20px;
     transform: rotate(15deg);
     top: -30px;
     width: 80px;
   }
+}
+
+.text-container {
+  grid-area: main;
+  justify-self: start;
 }
 
 .sub-title {
@@ -69,14 +84,16 @@
 }
 
 .title {
+  display: block;
   font-size: $title-detail;
 }
 
 .title-container {
-  border-bottom: 5px solid $detail-green;
   margin-bottom: 52px;
+  max-width: 100%;
+  grid-area: nav;
   padding-bottom: 10px;
-  width: 640px;
+  text-align: center;
 }
 
 .text-detail {
@@ -112,10 +129,10 @@
   }
 
   .image-container {
-    width: 212px;
     height: 300px;
     margin: 0 auto;
-
+    width: 212px;
+    
     &::after {
       right: -12px;
       top: -45px;

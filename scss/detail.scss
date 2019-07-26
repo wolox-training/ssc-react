@@ -24,6 +24,8 @@
   display: flex;
   flex-direction: column;
   padding: 46px;
+  animation-name: example;
+  animation-duration: 600ms;
 }
 
 .container-detail {
@@ -181,5 +183,14 @@
 
   .text-detail {
     margin-bottom: 18px;
+  }
+}
+
+@keyframes example {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }

@@ -1,6 +1,10 @@
 @import './colors/variables';
 @import './fonts/variables';
 
+@mixin heightBox($width-badge){
+  width: calc(80px - #{$width-badge});
+}
+
 .btn-return {
   font-family: 'Roboto';
   font-size: $text-detail;
@@ -17,6 +21,8 @@
 }
 
 .container {
+  display: flex;
+  flex-direction: column;
   padding: 46px;
 }
 
@@ -31,7 +37,7 @@
 
 .image-container {
   background: url(../assets/book-cover.png) no-repeat center;
-  background-size: cover;
+  background-size: contain;
   height: 368px;
   margin-right: 54px;
   position: relative;
@@ -86,4 +92,56 @@
   color: $detail-black;
   font-size: $text-detail;
   padding-right: 10px;
+}
+
+@media only screen and (max-width: 1024px) {
+  .btn-return {
+    align-self: center;
+  }
+
+  .container {
+    flex-direction: column-reverse;
+  }
+
+  .container-detail {
+    flex-direction: column;
+    height: 570px;
+    justify-content: space-around;
+    padding: 18px;
+    width: 336px;
+  }
+
+  .image-container {
+    width: 212px;
+    height: 300px;
+    margin: 0 auto;
+
+    &::after {
+      right: -12px;
+      top: -45px;
+      @include heightBox(80px * 0.3)
+    }
+  }
+
+  .sub-title {
+    font-size: $subtitle-list;
+  }
+
+  .title {
+    font-size: $title-responsive;
+  }
+
+  .title-container {
+    width: 100%;
+  }
+
+  .text-detail,
+  .title-text{
+    font-size: $text-list
+  }
+
+  .text-detail,
+  .title-container {
+    margin-bottom: 18px;
+  }
 }

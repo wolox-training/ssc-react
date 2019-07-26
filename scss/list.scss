@@ -9,7 +9,12 @@
   height: 300px;
   margin-top: 36px;
   padding: 28px;
+  transition: transform 300ms ease;
   width: 198px;
+
+  &:hover {
+    transform: scale(1.1, 1.1)
+  }
 }
 
 .container-list {

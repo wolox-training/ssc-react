@@ -1,0 +1,2 @@
+(window.__LOADABLE_LOADED_CHUNKS__=window.__LOADABLE_LOADED_CHUNKS__||[]).push([[12],{YwsU:function(o){o.exports={forgotPassword:"I forgot my password",logIn:"Log in",oauthRegister:"Or, use another account:",oauthLogin:"Log In with Another Account"}}}]);
+//# sourceMappingURL=12.3008a1081f4dd97e19fe.chunk.js.map

@@ -8,6 +8,7 @@ export function min(arg, ...argsep) {
   return undefined;
 }
 
-export function copy() {
-
+export function copy(obj) {
+  const { a, b } = obj;
+  return { a, b };
 }

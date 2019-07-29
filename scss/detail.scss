@@ -27,9 +27,13 @@
 }
 
 .container-detail {
-  box-shadow: 3px 3px 5px 1px $detail-grey;
-  background: $color-white;
-  display: flex;
+  align-items: center;
+  box-shadow: 3px 3px 5px 1px #828282;
+  background: #FFF;
+  display: grid;
+  grid-template-rows: 79px auto;
+  grid-template-columns: 312px auto;
+  grid-template-areas: "image title" "image main";
   margin: 44px auto;
   padding: 25px;
   width: 1000px;
@@ -38,8 +42,8 @@
 .image-container {
   background: url(../assets/book-cover.png) no-repeat center;
   background-size: contain;
+  grid-area: image;
   height: 368px;
-  margin-right: 54px;
   position: relative;
   width: 261px;
 
@@ -74,7 +78,7 @@
 
 .title-container {
   border-bottom: 5px solid $detail-green;
-  margin-bottom: 52px;
+  grid-area: title;
   padding-bottom: 10px;
   width: 640px;
 }
@@ -94,7 +98,32 @@
   padding-right: 10px;
 }
 
-@media only screen and (max-width: 1024px) {
+@media only screen and (max-width: 992px) {
+  .btn-return {
+    padding: 20px 0 0 20px;
+  }
+
+  .container {
+    padding: 0px;
+  }
+
+  .container-detail {
+    grid-template-areas: "title title" "image main";
+    width: 853px;
+  }
+
+  .title {
+    display: block;
+  }
+
+  .title-container {
+    border: none;
+    text-align: center;
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: 768px) {
   .btn-return {
     align-self: center;
   }
@@ -104,9 +133,10 @@
   }
 
   .container-detail {
-    flex-direction: column;
+    grid-template-rows: 60px 345px auto;
+    grid-template-columns: auto;
+    grid-template-areas: "title" "image" "main";
     height: 570px;
-    justify-content: space-around;
     padding: 18px;
     width: 336px;
   }
@@ -127,12 +157,21 @@
     font-size: $subtitle-list;
   }
 
+  .text-container {
+    border-top: 3px solid $detail-green;
+    padding-top: 20px;
+  }
+
   .title {
+    display: block;
     font-size: $title-responsive;
   }
 
   .title-container {
-    width: 100%;
+    border: none;
+    margin: 0;
+    text-align: center;
+    width: 100%;  
   }
 
   .text-detail,
@@ -140,8 +179,7 @@
     font-size: $text-list
   }
 
-  .text-detail,
-  .title-container {
+  .text-detail {
     margin-bottom: 18px;
   }
 }

@@ -1,8 +1,8 @@
-import { isArray } from './utils';
+import isArray from './utils';
 
-export function min() {
-  isArray();
-  return Math.min();
+export function min(arg) {
+  if (isArray(arg)) return Math.min(arg);
+  return arg;
 }
 
 export function copy() {

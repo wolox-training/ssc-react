@@ -57,7 +57,7 @@ describe('Spread operator', () => {
     expect(filterAttribs({ b: 1, a: 2, c: 3 })).toEqual({ c: 3 });
     expect(filterAttribs({ b: 1, d: 2, c: 3, e: 1 })).toEqual({ c: 3, d: 2, e: 1 });
   });
-  xit('filterAttribs does not mutate the argument', () => {
+  it('filterAttribs does not mutate the argument', () => {
     const example = { a: 1, b: 2, c: 3 };
 
     filterAttribs(example);

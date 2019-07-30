@@ -15,3 +15,7 @@ export function copy(arg) {
   const { a, b } = arg;
   return { a, b };
 }
+
+export function reverseMerge(arg, arg2) {
+  return [...arg2, ...arg];
+}

@@ -1,26 +1,20 @@
 import isArray from './utils';
 
-export function min(arg, ...argsep) {
-  if (arg) {
-    if (isArray(arg)) return Math.min(...arg);
-    return Math.min(arg, ...argsep);
-  }
+export function min(...values) {
+  if (values.length) return isArray(values[0]) ? Math.min(...values[0]) : Math.min(...values);
   return undefined;
 }
 
-export function copy(arg) {
-  if (isArray(arg)) {
-    return [...arg];
-  }
-  const { a, b } = arg;
-  return { a, b };
+export function copy(values) {
+  if (isArray(values)) return [...values];
+  return { ...values };
 }
 
-export function reverseMerge(arg, arg2) {
-  return [...arg2, ...arg];
+export function reverseMerge(val, val2) {
+  return [...val2, ...val];
 }
 
-export function filterAttribs(arg) {
-  const { a, b, ...rest } = arg;
+export function filterAttribs(val) {
+  const { a, b, ...rest } = val;
   return rest;
 }

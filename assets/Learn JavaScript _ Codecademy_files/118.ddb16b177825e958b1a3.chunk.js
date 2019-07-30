@@ -1,2 +1,0 @@
-(window.__LOADABLE_LOADED_CHUNKS__=window.__LOADABLE_LOADED_CHUNKS__||[]).push([[118],{EOYF:function(n,_,r){"use strict";var a=r("q1tI"),o=r.n(a),s=r("TSYQ"),t=r.n(s),e=r("Q8lw"),m=r.n(e);_.a=function Form(n){var _=t()(m.a.Form,n.className);return o.a.createElement("form",Object.assign({},n,{className:_}))}},Q8lw:function(n,_,r){n.exports={Form:"Form__2gFgmT5F5DNzwRqsquqz2j"}}}]);
-//# sourceMappingURL=118.ddb16b177825e958b1a3.chunk.js.map

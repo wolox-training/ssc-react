@@ -19,3 +19,8 @@ export function copy(arg) {
 export function reverseMerge(arg, arg2) {
   return [...arg2, ...arg];
 }
+
+export function filterAttribs(arg) {
+  const { a, b, ...rest } = arg;
+  return rest;
+}

@@ -3,12 +3,8 @@
 export function delay(time) {
   const start = Date.now();
   return new Promise((resolve, reject) => {
-    if (time < 600) {
-      setTimeout(() => resolve(Date.now() - start), time);
-    } else {
-      const reason = new Error('This time is too much !');
-      reject(reason);
-    }
+    if (time < 600) setTimeout(() => resolve(Date.now() - start), time);
+    reject(new Error('This time is too much !'));
   });
 }
 

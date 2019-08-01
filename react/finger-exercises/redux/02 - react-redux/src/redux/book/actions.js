@@ -1,5 +1,3 @@
-import { DATA } from '@constants/data';
-
 /**
  * See the @@BOOKS? That's the namespace.
  * We use it to ensure an action type belongs to only one store branch. Also,
@@ -15,9 +13,9 @@ export const actions = {
 };
 
 const actionsCreators = {
-  getBooks: () => ({
+  getBooks: data => ({
     type: actions.GET_BOOKS,
-    payload: DATA
+    payload: data
   }),
   addToCart: item => ({
     type: actions.ADD_TO_CART,

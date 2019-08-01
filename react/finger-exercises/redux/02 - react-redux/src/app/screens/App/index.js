@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import store from '@redux/store';
+import actionsCreators from '@redux/book/actions';
 import Navbar from '@components/Navbar';
 import Footer from '@components/Footer';
 
@@ -20,18 +21,24 @@ class App extends Component {
       this.setState({ books, bookSelected });
     });
     // TODO to implement the dispatch
+    // eslint-disable-next-line react/prop-types
+    store.dispatch(actionsCreators.getBooks(this.props.data));
   }
 
   // TODO to implement the dispatch
+  // eslint-disable-next-line no-unused-vars
   onSearch = value => {};
 
   // TODO to implement the dispatch
+  // eslint-disable-next-line no-unused-vars
   addToCart = item => {};
 
   // TODO to implement the dispatch
+  // eslint-disable-next-line no-unused-vars
   addItem = itemId => {};
 
   // TODO to implement the dispatch
+  // eslint-disable-next-line no-unused-vars
   removeItem = itemId => {};
 
   CONFIGURATION_BUTTON = {

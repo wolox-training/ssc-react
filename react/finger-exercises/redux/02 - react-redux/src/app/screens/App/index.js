@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react';
+import PropTypes from 'prop-types';
 import store from '@redux/store';
 import actionsCreators from '@redux/book/actions';
 import Navbar from '@components/Navbar';
@@ -16,13 +17,13 @@ class App extends Component {
   };
 
   componentDidMount() {
+    const { data } = this.props;
     store.subscribe(() => {
       const { books, bookSelected } = store.getState();
       this.setState({ books, bookSelected });
     });
     // TODO to implement the dispatch
-    // eslint-disable-next-line react/prop-types
-    store.dispatch(actionsCreators.getBooks(this.props.data));
+    store.dispatch(actionsCreators.getBooks(data));
   }
 
   // TODO to implement the dispatch
@@ -81,5 +82,9 @@ class App extends Component {
     );
   }
 }
+
+App.propTypes = {
+  data: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string, PropTypes.object]))
+};
 
 export default App;

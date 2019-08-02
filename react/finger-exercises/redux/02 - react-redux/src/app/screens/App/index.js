@@ -1,10 +1,8 @@
 import React, { Component, Fragment } from 'react';
-import PropTypes from 'prop-types';
 import store from '@redux/store';
-import actionsCreators from '@redux/book/actions';
+import booksCreators from '@redux/book/actions';
 import Navbar from '@components/Navbar';
 import Footer from '@components/Footer';
-import { listBooksPropType } from '@constants/propTypes';
 
 import Book from './components/Book';
 import Search from './components/Search';
@@ -18,43 +16,37 @@ class App extends Component {
   };
 
   componentDidMount() {
-    const { data } = this.props;
     store.subscribe(() => {
       const { books, originalData, bookSelected } = store.getState();
       this.setState({ bookSelected });
       if (books.length > 0) this.setState({ books });
       else this.setState({ books: originalData });
     });
-    // TODO to implement the dispatch
-    store.dispatch(actionsCreators.getBooks(data));
+    store.dispatch(booksCreators.getBooks());
   }
 
-  // TODO to implement the dispatch
   onSearch = value => {
     const { books } = this.state;
     const result = value && books.filter(book => book.name.toLowerCase().includes(value.toLowerCase()));
-    store.dispatch(actionsCreators.searchBook(result));
+    store.dispatch(booksCreators.searchBook(result));
   };
 
-  // TODO to implement the dispatch
   addToCart = item => {
     this.setState(
       prevState => ({ bookSelected: [...prevState.bookSelected, item] }),
       () => {
         const { bookSelected } = this.state;
-        store.dispatch(actionsCreators.addToCart(bookSelected));
+        store.dispatch(booksCreators.addToCart(bookSelected));
       }
     );
   };
 
-  // TODO to implement the dispatch
   addItem = itemId => {
-    store.dispatch(actionsCreators.addItem(itemId));
+    store.dispatch(booksCreators.addItem(itemId));
   };
 
-  // TODO to implement the dispatch
   removeItem = itemId => {
-    store.dispatch(actionsCreators.removeItem(itemId));
+    store.dispatch(booksCreators.removeItem(itemId));
   };
 
   CONFIGURATION_BUTTON = {
@@ -97,9 +89,5 @@ class App extends Component {
     );
   }
 }
-
-App.propTypes = {
-  data: PropTypes.arrayOf(listBooksPropType)
-};
 
 export default App;

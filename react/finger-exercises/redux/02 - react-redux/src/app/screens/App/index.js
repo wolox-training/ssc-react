@@ -49,22 +49,12 @@ class App extends Component {
 
   // TODO to implement the dispatch
   addItem = itemId => {
-    const { bookSelected } = this.state;
-    const newBook = bookSelected.map(book => {
-      if (book.id === itemId) {
-        const cont = book.quantity + 1;
-        book = { ...book, quantity: cont };
-      }
-      return book;
-    });
-    store.dispatch(actionsCreators.addToCart(newBook));
+    store.dispatch(actionsCreators.addItem(itemId));
   };
 
   // TODO to implement the dispatch
   removeItem = itemId => {
-    const { bookSelected } = this.state;
-    const newSelectedBook = bookSelected.filter(book => book.id !== itemId);
-    store.dispatch(actionsCreators.addToCart(newSelectedBook));
+    store.dispatch(actionsCreators.removeItem(itemId));
   };
 
   CONFIGURATION_BUTTON = {

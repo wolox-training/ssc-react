@@ -11,16 +11,22 @@ function reducer(state = initialState, action) {
     case actions.GET_BOOKS: // TODO to implement the logic
       return {
         ...state,
-        books: action.payload
+        originalData: action.payload
       };
     case actions.ADD_TO_CART: // TODO to implement the logic
-      return { ...state };
+      return {
+        ...state,
+        bookSelected: action.payload
+      };
     case actions.ADD_ITEM: // TODO to implement the logic
       return { ...state };
     case actions.REMOVE_ITEM: // TODO to implement the logic
       return { ...state };
     case actions.SEARCH_ITEM: // TODO to implement the logic
-      return { ...state };
+      return {
+        ...state,
+        books: action.payload
+      };
     default:
       return state;
   }

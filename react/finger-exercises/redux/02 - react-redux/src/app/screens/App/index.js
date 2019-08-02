@@ -4,6 +4,7 @@ import store from '@redux/store';
 import actionsCreators from '@redux/book/actions';
 import Navbar from '@components/Navbar';
 import Footer from '@components/Footer';
+import { listBooksPropType } from '@constants/propTypes';
 
 import Book from './components/Book';
 import Search from './components/Search';
@@ -19,28 +20,52 @@ class App extends Component {
   componentDidMount() {
     const { data } = this.props;
     store.subscribe(() => {
-      const { books, bookSelected } = store.getState();
-      this.setState({ books, bookSelected });
+      const { books, originalData, bookSelected } = store.getState();
+      this.setState({ bookSelected });
+      if (books.length > 0) this.setState({ books });
+      else this.setState({ books: originalData });
     });
     // TODO to implement the dispatch
     store.dispatch(actionsCreators.getBooks(data));
   }
 
   // TODO to implement the dispatch
-  // eslint-disable-next-line no-unused-vars
-  onSearch = value => {};
+  onSearch = value => {
+    const { books } = this.state;
+    const result = value && books.filter(book => book.name.toLowerCase().includes(value.toLowerCase()));
+    store.dispatch(actionsCreators.searchBook(result));
+  };
 
   // TODO to implement the dispatch
-  // eslint-disable-next-line no-unused-vars
-  addToCart = item => {};
+  addToCart = item => {
+    this.setState(
+      prevState => ({ bookSelected: [...prevState.bookSelected, item] }),
+      () => {
+        const { bookSelected } = this.state;
+        store.dispatch(actionsCreators.addToCart(bookSelected));
+      }
+    );
+  };
 
   // TODO to implement the dispatch
-  // eslint-disable-next-line no-unused-vars
-  addItem = itemId => {};
+  addItem = itemId => {
+    const { bookSelected } = this.state;
+    const newBook = bookSelected.map(book => {
+      if (book.id === itemId) {
+        const cont = book.quantity + 1;
+        book = { ...book, quantity: cont };
+      }
+      return book;
+    });
+    store.dispatch(actionsCreators.addToCart(newBook));
+  };
 
   // TODO to implement the dispatch
-  // eslint-disable-next-line no-unused-vars
-  removeItem = itemId => {};
+  removeItem = itemId => {
+    const { bookSelected } = this.state;
+    const newSelectedBook = bookSelected.filter(book => book.id !== itemId);
+    store.dispatch(actionsCreators.addToCart(newSelectedBook));
+  };
 
   CONFIGURATION_BUTTON = {
     add: {
@@ -84,7 +109,7 @@ class App extends Component {
 }
 
 App.propTypes = {
-  data: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string, PropTypes.object]))
+  data: PropTypes.arrayOf(listBooksPropType)
 };
 
 export default App;

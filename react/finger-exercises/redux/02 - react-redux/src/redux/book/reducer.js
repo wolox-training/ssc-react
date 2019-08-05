@@ -28,7 +28,15 @@ function reducer(state = initialState, action) {
     case actions.REMOVE_ITEM:
       return {
         ...state,
-        bookSelected: state.bookSelected.filter(book => book.id !== action.payload)
+        bookSelected: state.bookSelected.reduce((accumulator, currentValue) => {
+          if (currentValue.id === action.payload) {
+            const newQuantity = currentValue.quantity - 1;
+            if (newQuantity > 0) accumulator.push({ ...currentValue, quantity: newQuantity });
+          } else {
+            accumulator.push(currentValue);
+          }
+          return accumulator;
+        }, [])
       };
     case actions.SEARCH_ITEM:
       return {

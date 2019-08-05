@@ -41,14 +41,6 @@ class App extends Component {
     );
   };
 
-  addItem = itemId => {
-    store.dispatch(bookActions.addItem(itemId));
-  };
-
-  removeItem = itemId => {
-    store.dispatch(bookActions.removeItem(itemId));
-  };
-
   CONFIGURATION_BUTTON = {
     add: {
       text: 'Add to cart',

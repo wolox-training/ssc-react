@@ -28,7 +28,13 @@ function reducer(state = initialState, action) {
     case actions.REMOVE_ITEM:
       return {
         ...state,
-        bookSelected: state.bookSelected.filter(book => book.id !== action.payload)
+        bookSelected: state.bookSelected
+          .map(book =>
+            book.id === action.payload && book.quantity >= 1
+              ? { ...book, quantity: book.quantity - 1 }
+              : { ...book }
+          )
+          .filter(book => (book.quantity < 1 ? book.id !== action.payload : book))
       };
     case actions.SEARCH_ITEM:
       return {

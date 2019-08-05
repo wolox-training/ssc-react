@@ -1,5 +1,4 @@
 import { DATA } from '@constants/data';
-
 /**
  * See the @@BOOKS? That's the namespace.
  * We use it to ensure an action type belongs to only one store branch. Also,

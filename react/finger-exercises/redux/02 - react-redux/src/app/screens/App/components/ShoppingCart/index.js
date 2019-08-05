@@ -1,7 +1,9 @@
 import React, { PureComponent, Fragment } from 'react';
 import { arrayOf, func } from 'prop-types';
-import { bookSelectedPropType } from '@constants/propTypes';
 import Button from '@components/Button';
+import { connect } from 'react-redux';
+import bookActions from '@redux/book/actions';
+import { bookSelectedPropType } from '@constants/propTypes';
 
 import Item from './components/Item';
 import styles from './styles.scss';
@@ -20,12 +22,12 @@ class ShoppingCart extends PureComponent {
   total = (accumulator, currentValue) => accumulator + currentValue.quantity;
 
   renderItem = item => {
-    const { addItem, removeItem } = this.props;
-    return <Item key={item.id} item={item} addItem={addItem} removeItem={removeItem} />;
+    const { handleAddItem, handleDeleteItem } = this.props;
+    return <Item key={item.id} item={item} addItem={handleAddItem} removeItem={handleDeleteItem} />;
   };
 
   render() {
-    const { data } = this.props;
+    const { bookSelected } = this.props;
     return (
       <Fragment>
         <Button className={styles.buttonCart} onClick={this.toggleContent}>
@@ -33,8 +35,8 @@ class ShoppingCart extends PureComponent {
         </Button>
         <div className={`${styles.container} ${this.state.open ? styles.open : ''}`}>
           <h1 className={styles.title}>Cart</h1>
-          <ul className={styles.content}>{data.map(this.renderItem)}</ul>
-          <h2 className={`${styles.title} ${styles.total}`}>Total: {data.reduce(this.total, 0)}</h2>
+          <ul className={styles.content}>{bookSelected.map(this.renderItem)}</ul>
+          <h2 className={`${styles.title} ${styles.total}`}>Total: {bookSelected.reduce(this.total, 0)}</h2>
         </div>
       </Fragment>
     );
@@ -42,9 +44,25 @@ class ShoppingCart extends PureComponent {
 }
 
 ShoppingCart.propTypes = {
-  data: arrayOf(bookSelectedPropType).isRequired,
-  addItem: func.isRequired,
-  removeItem: func.isRequired
+  bookSelected: arrayOf(bookSelectedPropType).isRequired,
+  handleAddItem: func.isRequired,
+  handleDeleteItem: func.isRequired
 };
 
-export default ShoppingCart;
+const mapDispatchToProps = dispatch => ({
+  handleAddItem(item) {
+    dispatch(bookActions.addItem(item));
+  },
+  handleDeleteItem(item) {
+    dispatch(bookActions.removeItem(item));
+  }
+});
+
+const mapStateToProps = state => ({
+  bookSelected: state.bookSelected
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ShoppingCart);

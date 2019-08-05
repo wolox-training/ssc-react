@@ -2,7 +2,7 @@ import React, { PureComponent, Fragment } from 'react';
 import { arrayOf, func } from 'prop-types';
 import Button from '@components/Button';
 import { connect } from 'react-redux';
-import booksCreators from '@redux/book/actions';
+import bookActions from '@redux/book/actions';
 import { bookSelectedPropType } from '@constants/propTypes';
 
 import Item from './components/Item';
@@ -51,10 +51,10 @@ ShoppingCart.propTypes = {
 
 const mapDispatchToProps = dispatch => ({
   handleAddItem(item) {
-    dispatch(booksCreators.addItem(item));
+    dispatch(bookActions.addItem(item));
   },
   handleDeleteItem(item) {
-    dispatch(booksCreators.removeItem(item));
+    dispatch(bookActions.removeItem(item));
   }
 });
 

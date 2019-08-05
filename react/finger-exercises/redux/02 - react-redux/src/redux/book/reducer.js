@@ -29,13 +29,13 @@ function reducer(state = initialState, action) {
       return {
         ...state,
         bookSelected: state.bookSelected.reduce((accumulator, currentValue) => {
-          if (currentValue.quantity > 1 && currentValue.id === action.payload) {
-            return [...accumulator, { ...currentValue, quantity: currentValue.quantity - 1 }];
+          if (currentValue.id === action.payload) {
+            const newQuantity = currentValue.quantity - 1;
+            if (newQuantity > 0) accumulator.push({ ...currentValue, quantity: newQuantity });
+          } else {
+            accumulator.push(currentValue);
           }
-          if (currentValue.id !== action.payload) {
-            return [...accumulator, currentValue];
-          }
-          return [...accumulator];
+          return accumulator;
         }, [])
       };
     case actions.SEARCH_ITEM:

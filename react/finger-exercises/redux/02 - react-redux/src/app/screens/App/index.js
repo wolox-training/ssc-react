@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import store from '@redux/store';
-import booksCreators from '@redux/book/actions';
+import bookActions from '@redux/book/actions';
 import Navbar from '@components/Navbar';
 import Footer from '@components/Footer';
 
@@ -22,13 +22,13 @@ class App extends Component {
       if (books.length > 0) this.setState({ books });
       else this.setState({ books: originalData });
     });
-    store.dispatch(booksCreators.getBooks());
+    store.dispatch(bookActions.getBooks());
   }
 
   onSearch = value => {
     const { books } = this.state;
     const result = value && books.filter(book => book.name.toLowerCase().includes(value.toLowerCase()));
-    store.dispatch(booksCreators.searchBook(result));
+    store.dispatch(bookActions.searchBook(result));
   };
 
   addToCart = item => {
@@ -36,17 +36,17 @@ class App extends Component {
       prevState => ({ bookSelected: [...prevState.bookSelected, item] }),
       () => {
         const { bookSelected } = this.state;
-        store.dispatch(booksCreators.addToCart(bookSelected));
+        store.dispatch(bookActions.addToCart(bookSelected));
       }
     );
   };
 
   addItem = itemId => {
-    store.dispatch(booksCreators.addItem(itemId));
+    store.dispatch(bookActions.addItem(itemId));
   };
 
   removeItem = itemId => {
-    store.dispatch(booksCreators.removeItem(itemId));
+    store.dispatch(bookActions.removeItem(itemId));
   };
 
   CONFIGURATION_BUTTON = {

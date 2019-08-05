@@ -28,15 +28,15 @@ function reducer(state = initialState, action) {
     case actions.REMOVE_ITEM:
       return {
         ...state,
-        bookSelected: state.bookSelected.reduce(
-          (accumulator, currentValue) =>
-            currentValue.quantity > 1 && currentValue.id === action.payload
-              ? [...accumulator, { ...currentValue, quantity: currentValue.quantity - 1 }]
-              : currentValue.id !== action.payload
-              ? [...accumulator, currentValue]
-              : [...accumulator],
-          []
-        )
+        bookSelected: state.bookSelected.reduce((accumulator, currentValue) => {
+          if (currentValue.quantity > 1 && currentValue.id === action.payload) {
+            return [...accumulator, { ...currentValue, quantity: currentValue.quantity - 1 }];
+          }
+          if (currentValue.id !== action.payload) {
+            return [...accumulator, currentValue];
+          }
+          return [...accumulator];
+        }, [])
       };
     case actions.SEARCH_ITEM:
       return {

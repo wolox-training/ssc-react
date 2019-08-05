@@ -2,6 +2,7 @@ import React, { PureComponent, Fragment } from 'react';
 import { arrayOf, func } from 'prop-types';
 import Button from '@components/Button';
 import { connect } from 'react-redux';
+import booksCreators from '@redux/book/actions';
 import { bookSelectedPropType } from '@constants/propTypes';
 
 import Item from './components/Item';
@@ -21,8 +22,8 @@ class ShoppingCart extends PureComponent {
   total = (accumulator, currentValue) => accumulator + currentValue.quantity;
 
   renderItem = item => {
-    const { addItem, removeItem } = this.props;
-    return <Item key={item.id} item={item} addItem={addItem} removeItem={removeItem} />;
+    const { handleAddItem, handleDeleteItem } = this.props;
+    return <Item key={item.id} item={item} addItem={handleAddItem} removeItem={handleDeleteItem} />;
   };
 
   render() {
@@ -44,12 +45,24 @@ class ShoppingCart extends PureComponent {
 
 ShoppingCart.propTypes = {
   bookSelected: arrayOf(bookSelectedPropType).isRequired,
-  addItem: func.isRequired,
-  removeItem: func.isRequired
+  handleAddItem: func.isRequired,
+  handleDeleteItem: func.isRequired
 };
+
+const mapDispatchToProps = dispatch => ({
+  handleAddItem(item) {
+    dispatch(booksCreators.addItem(item));
+  },
+  handleDeleteItem(item) {
+    dispatch(booksCreators.removeItem(item));
+  }
+});
 
 const mapStateToProps = state => ({
   bookSelected: state.bookSelected
 });
 
-export default connect(mapStateToProps)(ShoppingCart);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ShoppingCart);

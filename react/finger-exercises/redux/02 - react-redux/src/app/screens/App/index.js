@@ -81,9 +81,7 @@ class App extends Component {
             </div>
           )}
         </div>
-        {this.state.bookSelected.length ? (
-          <ShoppingCart addItem={this.addItem} removeItem={this.removeItem} />
-        ) : null}
+        {this.state.bookSelected.length ? <ShoppingCart /> : null}
         <Footer />
       </Fragment>
     );

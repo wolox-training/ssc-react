@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
+import Spinner from 'react-spinkit';
 
 import getMatches from '../../../services/MatchesService';
 
 import styles from './styles.module.scss';
 import Board from './components/Board';
 
-const Spinner = require('react-spinkit');
 
 class Game extends Component {
   state = {
@@ -14,10 +14,12 @@ class Game extends Component {
   };
 
   componentDidMount() {
-    getMatches.getMatches().then(response => {
-      this.setState({ matches: response.data, loading: false });
-    });
+    setTimeout(() => getMatches.getMatches().then(response => {
+      this.getData(response.data);
+    }), 500);
   }
+
+  getData = (matches) => this.setState({ matches, loading: false })
 
   renderList = item => (
     <li key={item.id} className={styles.itemInfo}>
@@ -36,7 +38,7 @@ class Game extends Component {
         <div className={styles.gameInfo}>
           {
             this.state.loading
-              ? <Spinner name="circle" fadeIn="none" />
+              ? <Spinner className={styles} name="circle" fadeIn="none" />
               : <ol className={styles.infoContainer}>{this.state.matches.map(this.renderList)}</ol>
           }
         </div>

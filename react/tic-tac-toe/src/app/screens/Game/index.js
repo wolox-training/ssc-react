@@ -1,33 +1,20 @@
 import React, { Component } from 'react';
 import Spinner from 'react-spinkit';
+import { connect } from 'react-redux';
+import { arrayOf, func, bool } from 'prop-types';
 
-import getMatches from '../../../services/MatchesService';
+import { matchesPropsTypes } from '../../../constants/propsTypes';
+import dataActions from '../../../redux/data/actions';
 
+import Matches from './components/Matches';
 import styles from './styles.module.scss';
 import Board from './components/Board';
 
-
 class Game extends Component {
-  state = {
-    matches: [],
-    loading: true
-  }
-
   componentDidMount() {
-    setTimeout(() => getMatches.getMatches().then(response => {
-      this.getData(response.data);
-    }), 800);
+    const { handleGetData } = this.props;
+    setTimeout(() => handleGetData(), 500);
   }
-
-  getData = (matches) => this.setState({ matches, loading: false })
-
-  renderList = item => (
-    <li key={item.id} className={styles.itemInfo}>
-      <p>{item.player_one} - </p>
-      <p>{item.player_two} - </p>
-      <p>{item.winner}</p>
-    </li>
-  )
 
   render() {
     return (
@@ -37,9 +24,9 @@ class Game extends Component {
         </div>
         <div className={styles.gameInfo}>
           {
-            this.state.loading
-              ? <Spinner className={styles} name="circle" fadeIn="none" />
-              : <ol className={styles.infoContainer}>{this.state.matches.map(this.renderList)}</ol>
+            this.props.loading
+              ? <Spinner name="circle" fadeIn="none" />
+              : <ol className={styles.infoContainer}>{this.props.data.map(Matches)}</ol>
           }
         </div>
       </div>
@@ -47,4 +34,25 @@ class Game extends Component {
   }
 }
 
-export default Game;
+Game.propTypes = {
+  data: arrayOf(matchesPropsTypes).isRequired,
+  handleGetData: func.isRequired,
+  loading: bool
+};
+
+const mapDispatchToProps = dispatch => ({
+  handleGetData() {
+    dispatch(dataActions.getData());
+  }
+});
+
+const mapStateToProps = state => ({
+  data: state.data,
+  loading: state.loading
+});
+
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Game);

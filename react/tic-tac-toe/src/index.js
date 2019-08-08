@@ -7,6 +7,7 @@ import './config/i18n';
 import './scss/application.scss';
 import { register } from './serviceWorker';
 
+
 const render = () => {
   ReactDOM.render(
     <AppContainer>

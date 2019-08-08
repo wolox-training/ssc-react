@@ -6,8 +6,6 @@ export const actions = {
   GET_DATA_FAILURE: '@@DATA/GET_DATA_FAILURE'
 };
 
-console.log(dataFetch);
-
 const actionsCreators = {
   getData: () => dispatch => {
     dispatch({ type: actions.GET_DATA_REQUEST });

@@ -17,6 +17,7 @@ class Game extends Component {
   }
 
   render() {
+    const { data } = this.props;
     return (
       <div className={styles.game}>
         <div className={styles.gameBoard}>
@@ -26,7 +27,7 @@ class Game extends Component {
           {
             this.props.loading
               ? <Spinner name="circle" fadeIn="none" />
-              : <ol className={styles.infoContainer}>{this.props.data.map(Matches)}</ol>
+              : <ol className={styles.infoContainer}>{ data.map(Matches) }</ol>
           }
         </div>
       </div>
@@ -41,16 +42,13 @@ Game.propTypes = {
 };
 
 const mapDispatchToProps = dispatch => ({
-  handleGetData() {
-    dispatch(dataActions.getData());
-  }
+  handleGetData: () => dispatch(dataActions.getData())
 });
 
 const mapStateToProps = state => ({
-  data: state.data,
+  data: state.data.data,
   loading: state.loading
 });
-
 
 export default connect(
   mapStateToProps,

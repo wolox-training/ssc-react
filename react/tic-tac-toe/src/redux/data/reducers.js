@@ -1,32 +1,32 @@
 import { actions } from './actions';
 
 const initialState = {
-  loading: true,
-  succes: false,
+  loading: false,
   data: []
 };
 
-function reducer(state = initialState, action) {
+const data = (state = initialState, action) => {
   switch (action.type) {
     case actions.GET_DATA_REQUEST:
-      return state;
+      return {
+        ...state,
+        loading: true
+      };
     case actions.GET_DATA_SUCCESS:
       return {
         ...state,
         loading: false,
-        succes: true,
         data: action.data
       };
     case actions.GET_DATA_FAILURE:
       return {
         ...state,
         loading: false,
-        succes: false,
         data: []
       };
     default:
       return state;
   }
-}
+};
 
-export default reducer;
+export default data;

@@ -5,7 +5,7 @@ const initialState = {
   data: []
 };
 
-const data = (state = initialState, action) => {
+const game = (state = initialState, action) => {
   switch (action.type) {
     case actions.GET_DATA_REQUEST:
       return {
@@ -29,4 +29,4 @@ const data = (state = initialState, action) => {
   }
 };
 
-export default data;
+export default game;

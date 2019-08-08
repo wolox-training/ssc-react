@@ -1,12 +1,14 @@
 import React from 'react';
 
+import players from '../../../../../constants/player';
+
 import styles from './styles.module.scss';
 
 function renderList(item) {
   return (
     <li key={item.id} className={styles.itemInfo}>
-      <p>{item.player_one} - </p>
-      <p>{item.player_two} - </p>
+      <p>{item[players.playerOne]} - </p>
+      <p>{item[players.playerTwo]} - </p>
       <p>{item.winner}</p>
     </li>
   );

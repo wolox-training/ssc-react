@@ -13,11 +13,11 @@ import Board from './components/Board';
 class Game extends Component {
   componentDidMount() {
     const { handleGetData } = this.props;
-    setTimeout(() => handleGetData(), 500);
+    handleGetData();
   }
 
   render() {
-    const { data } = this.props;
+    const { data, loading } = this.props;
     return (
       <div className={styles.game}>
         <div className={styles.gameBoard}>
@@ -25,7 +25,7 @@ class Game extends Component {
         </div>
         <div className={styles.gameInfo}>
           {
-            this.props.loading
+            loading
               ? <Spinner name="circle" fadeIn="none" />
               : <ol className={styles.infoContainer}>{ data.map(Matches) }</ol>
           }
@@ -46,8 +46,8 @@ const mapDispatchToProps = dispatch => ({
 });
 
 const mapStateToProps = state => ({
-  data: state.data.data,
-  loading: state.loading
+  data: state.game.data,
+  loading: state.game.loading
 });
 
 export default connect(

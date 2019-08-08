@@ -11,12 +11,12 @@ class Game extends Component {
   state = {
     matches: [],
     loading: true
-  };
+  }
 
   componentDidMount() {
     setTimeout(() => getMatches.getMatches().then(response => {
       this.getData(response.data);
-    }), 500);
+    }), 800);
   }
 
   getData = (matches) => this.setState({ matches, loading: false })
@@ -27,7 +27,7 @@ class Game extends Component {
       <p>{item.player_two} - </p>
       <p>{item.winner}</p>
     </li>
-  );
+  )
 
   render() {
     return (

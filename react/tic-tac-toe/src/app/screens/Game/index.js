@@ -27,6 +27,7 @@ class Game extends Component {
             this.props.loading
               ? <Spinner name="circle" fadeIn="none" />
               : <ol className={styles.infoContainer}>{this.props.data.map(Matches)}</ol>
+
           }
         </div>
       </div>

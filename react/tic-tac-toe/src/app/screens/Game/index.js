@@ -1,27 +1,23 @@
 import React, { Component } from 'react';
 import Spinner from 'react-spinkit';
+import { connect } from 'react-redux';
+import { arrayOf, func, bool } from 'prop-types';
 
-import getMatches from '../../../services/MatchesService';
+import { matchesPropsTypes } from '../../../constants/propsTypes';
+import dataActions from '../../../redux/data/actions';
 
 import Matches from './components/Matches';
 import styles from './styles.module.scss';
 import Board from './components/Board';
 
 class Game extends Component {
-  state = {
-    matches: [],
-    loading: true
-  };
-
   componentDidMount() {
-    setTimeout(() => getMatches.getMatches().then(response => {
-      this.getData(response.data);
-    }), 500);
+    const { handleGetData } = this.props;
+    handleGetData();
   }
 
-  getData = (matches) => this.setState({ matches, loading: false })
-
   render() {
+    const { data, loading } = this.props;
     return (
       <div className={styles.game}>
         <div className={styles.gameBoard}>
@@ -29,9 +25,9 @@ class Game extends Component {
         </div>
         <div className={styles.gameInfo}>
           {
-            this.state.loading
+            loading
               ? <Spinner name="circle" fadeIn="none" />
-              : <ol className={styles.infoContainer}>{this.state.matches.map(Matches)}</ol>
+              : <ol className={styles.infoContainer}>{ data.map(Matches) }</ol>
           }
         </div>
       </div>
@@ -39,4 +35,22 @@ class Game extends Component {
   }
 }
 
-export default Game;
+Game.propTypes = {
+  data: arrayOf(matchesPropsTypes).isRequired,
+  handleGetData: func.isRequired,
+  loading: bool
+};
+
+const mapDispatchToProps = dispatch => ({
+  handleGetData: () => dispatch(dataActions.getData())
+});
+
+const mapStateToProps = state => ({
+  data: state.game.data,
+  loading: state.game.loading
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Game);

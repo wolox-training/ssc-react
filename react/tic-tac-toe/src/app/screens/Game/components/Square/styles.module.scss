@@ -4,18 +4,25 @@ $square-background: $white;
 $square-border: $dust-gray;
 
 .square {
-  background: $square-background;
-  border: 1px solid $square-border;
+  background: $white;
+  border-radius: 7px;
+  box-shadow: 2px 2px 9px 1px $border-grey;
   float: left;
   font-size: 24px;
   font-weight: bold;
   line-height: 34px;
-  height: 34px;
+  height: 90px;
   margin-right: -1px;
   margin-top: -1px;
-  padding: 0;
+  padding: 5px;
   text-align: center;
-  width: 34px;
+  transition: transform 300ms ease;
+  width: 90px;
+  margin: 10px;
+  
+  &:hover {
+    transform: scale(1.1, 1.1)
+  }
 }
 
 .square:focus {

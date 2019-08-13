@@ -12,11 +12,11 @@ import { register } from './serviceWorker';
 
 const render = () => {
   ReactDOM.render(
-    <Provider store={store}>
-      <AppContainer>
+    <AppContainer>
+      <Provider store={store}>
         <App />
-      </AppContainer>
-    </Provider>,
+      </Provider>
+    </AppContainer>,
     document.getElementById('root')
   );
 };

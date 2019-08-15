@@ -1,4 +1,5 @@
 @import 'src/scss/colors.scss';
+@import 'src//scss/fonts';
 
 .game {
   align-items: center;
@@ -13,17 +14,15 @@
 }
 
 .gameBoard {
-  font-size: 20px;
-  font-family: roboto;
+  font-size: $text-detail;
   text-align: center;
 }
 
 .game-info {
-  height: 363px;
+  height: 365px;
   margin: 25px;
   width: 300px;
-  font-size: 20px;
-  font-family: roboto;
+  font-size: $text-detail;
 }
 
 .itemInfo {
@@ -45,7 +44,7 @@
 
 .titleInfo {
   color: black;
-  font-size: 20px;
+  font-size: $text-detail;
   margin-bottom: 20px;
   text-align: center;
   width: 100%;

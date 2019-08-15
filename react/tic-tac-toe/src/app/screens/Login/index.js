@@ -1,25 +1,28 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { func, shape, string } from 'prop-types';
+import { func, bool } from 'prop-types';
 
-import dataActions from '../../../redux/login/actions';
+import LoginActions from '../../../redux/login/actions';
 import Logo from '../../assets/LogoWolox.png';
 
 import styles from './styles.module.scss';
 import RegisterForm from './components/Form';
 
 class Login extends Component {
-  handleSubmit = event => {
-    event.preventDefault();
-    const { body, handleOnLogin } = this.props;
-    handleOnLogin(body.values);
+  handleSubmit = values => {
+    const { handleOnLogin } = this.props;
+    handleOnLogin(values);
   }
 
   render() {
+    const { error } = this.props;
     return (
-      <div className={styles.containerCard}>
-        <img src={Logo} className={styles.imageLogo} />
-        <RegisterForm onHandleSubmit={this.handleSubmit} />
+      <div className={styles.container}>
+        <div className={styles.containerCard}>
+          <img src={Logo} className={styles.imageLogo} alt="login" />
+          <RegisterForm form="register" onSubmit={this.handleSubmit} />
+          <p className={styles.errorUser}>{error && 'Wrong user or password'}</p>
+        </div>
       </div>
     );
   }
@@ -27,18 +30,15 @@ class Login extends Component {
 
 Login.propTypes = {
   handleOnLogin: func.isRequired,
-  body: shape({
-    email: string,
-    password: string
-  })
+  error: bool
 };
 
 const mapDispatchToProps = dispatch => ({
-  handleOnLogin: values => dispatch(dataActions.onLogin(values))
+  handleOnLogin: values => dispatch(LoginActions.onLogin(values))
 });
 
 const mapStateToProps = state => ({
-  body: state.form.register
+  error: state.login.isUserError
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);

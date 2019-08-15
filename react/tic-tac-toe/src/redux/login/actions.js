@@ -1,25 +1,29 @@
 import dataFetch from '../../services/MatchesService';
 
 export const actions = {
-  SET_STATE: '@@DATA/SET_STATE',
-
+  SET_AUTH: '@@DATA/SET_AUTH',
   LOGIN_REQUEST: '@@DATA/LOGIN_REQUEST',
   LOGIN_SUCCESS: '@@DATA/GLOGIN_SUCCESS',
   LOGIN_FAILURE: '@@DATA/LOGIN_FAILURE'
 };
 
 const actionsCreators = {
-  onLogin: values => dispatch => {
+  onLogin: values => async dispatch => {
     dispatch({ type: actions.LOGIN_REQUEST });
-    dataFetch.onLogin(values).then(response => {
-      const { data } = response;
-      localStorage.setItem('token', data.token);
-      dispatch({ type: actions.SET_STATE, token: true });
-    });
+    try {
+      const res = await dataFetch.onLogin(values);
+      if (res.status === 200) {
+        localStorage.setItem('token', res.data.token);
+        return dispatch({ type: actions.SET_AUTH, hasToken: true, isError: false });
+      }
+      return dispatch({ type: actions.SET_AUTH, hasToken: false, isError: true });
+    } catch (error) {
+      return error;
+    }
   },
   setLogin: () => dispatch => {
-    const token = !!localStorage.getItem('token');
-    dispatch({ type: actions.SET_STATE, token });
+    const hasToken = !!localStorage.getItem('token');
+    dispatch({ type: actions.SET_AUTH, hasToken });
   }
 };
 

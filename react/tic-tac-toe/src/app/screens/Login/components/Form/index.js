@@ -1,35 +1,38 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
-import { func } from 'prop-types';
+import { func, bool } from 'prop-types';
 
-import { customInput } from '../customInput';
-import { validMail, minLength } from '../../../../../utils/validation';
+import { CustomInput } from '../customInput';
+import { validMail, minLength, required } from '../../../../../utils/validation';
 
-function RegisterForm(props) {
-  const { onHandleSubmit } = props;
+import styles from './styles.module.scss';
+
+function RegisterForm({ handleSubmit, submitting }) {
   return (
-    <form onSubmit={onHandleSubmit}>
+    <form onSubmit={handleSubmit} className={styles.containerForm}>
       <Field
         name="email"
-        component={customInput}
+        component={CustomInput}
         type="text"
         label="e-mail"
-        validate={validMail}
+        validate={[required, validMail]}
       />
       <Field
         name="password"
-        component={customInput}
+        component={CustomInput}
         type="text"
         label="password"
-        validate={minLength}
+        validate={[required, minLength]}
       />
-      <button type="submit">Submit</button>
+      <div className={styles.separator} />
+      <button type="submit" disabled={submitting} className={styles.buttonLogin}>Submit</button>
     </form>
   );
 }
 
 RegisterForm.propTypes = {
-  onHandleSubmit: func.isRequired
+  handleSubmit: func.isRequired,
+  submitting: bool
 };
 
-export default reduxForm({ form: 'register' })(RegisterForm);
+export default reduxForm()(RegisterForm);

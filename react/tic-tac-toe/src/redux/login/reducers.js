@@ -1,15 +1,17 @@
 import { actions } from './actions';
 
 const initialState = {
-  isUserLoggedIn: false
+  isUserLoggedIn: false,
+  isUserError: false
 };
 
 const login = (state = initialState, action) => {
   switch (action.type) {
-    case actions.SET_STATE:
+    case actions.SET_AUTH:
       return {
         ...state,
-        isUserLoggedIn: action.token
+        isUserLoggedIn: action.hasToken,
+        isUserError: action.isError
       };
     default:
       return state;

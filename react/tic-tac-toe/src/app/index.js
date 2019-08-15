@@ -1,36 +1,28 @@
 import React, { Component } from 'react';
 import { ConnectedRouter } from 'connected-react-router';
-import { Route, Redirect, Switch } from 'react-router-dom';
+import { Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { func, bool } from 'prop-types';
+import { bool, func } from 'prop-types';
 
+import loginActions from '../redux/login/actions';
 import { history } from '../redux/store';
-import dataActions from '../redux/login/actions';
-import { routes } from '../constants/routes';
+import { ROUTES } from '../constants/routes';
+
+import ComponentRoute from './routes';
 import '../scss/application.scss';
 
 class App extends Component {
   componentDidMount() {
-    const { handleUserLogged } = this.props;
-    handleUserLogged();
-  }
-
-  getRenderGame = ({ component: RouteComponent, path }) => {
-    const { authed } = this.props;
-    return () => authed ? <RouteComponent /> : <Redirect to={path} />;
-  }
-
-  getRenderLogin = ({ component: RouteComponent, path }) => {
-    const { authed } = this.props;
-    return () => authed === false ? <RouteComponent /> : <Redirect to={path} />;
+    const { handleSetLogin } = this.props;
+    handleSetLogin();
   }
 
   render() {
+    const { authed } = this.props;
     return (
       <ConnectedRouter history={history}>
         <Switch>
-          <Route exact path="/game" render={this.getRenderGame(routes.game)} />
-          <Route exact path="/" render={this.getRenderLogin(routes.login)} />
+          { ROUTES.map(route => <ComponentRoute path={route.path} component={route.component} isPrivate={route.private} key={route.path} authed={authed} />)}
         </Switch>
       </ConnectedRouter>
     );
@@ -38,12 +30,12 @@ class App extends Component {
 }
 
 App.propTypes = {
-  handleUserLogged: func.isRequired,
-  authed: bool
+  authed: bool,
+  handleSetLogin: func
 };
 
 const mapDispatchToProps = dispatch => ({
-  handleUserLogged: () => dispatch(dataActions.setLogin())
+  handleSetLogin: () => dispatch(loginActions.setLogin())
 });
 
 const mapStateToProps = state => ({

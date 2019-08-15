@@ -10,15 +10,15 @@ $square-border: $dust-gray;
   float: left;
   font-size: 24px;
   font-weight: bold;
-  line-height: 34px;
   height: 90px;
+  line-height: 34px;
+  margin: 10px;
   margin-right: -1px;
   margin-top: -1px;
   padding: 5px;
   text-align: center;
   transition: transform 300ms ease;
   width: 90px;
-  margin: 10px;
   
   &:hover {
     transform: scale(1.1, 1.1)

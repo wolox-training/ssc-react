@@ -1,15 +1,17 @@
 import Game from '../app/screens/Game';
 import Login from '../app/screens/Login';
 
-export const routes = {
-  game: {
+export const ROUTES = [
+  {
     component: Game,
-    path: '/'
+    path: '/game',
+    private: true
   },
 
-  login: {
+  {
     component: Login,
-    path: '/game'
+    path: '/',
+    private: false
   }
-};
+];
 

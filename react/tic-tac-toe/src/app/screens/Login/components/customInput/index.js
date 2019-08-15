@@ -1,14 +1,17 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 
-export const customInput = props => {
+import styles from './styles.module.scss';
+
+export const CustomInput = props => {
   const { input, type, label, meta } = props;
   return (
-    <div>
-      <label>{label}</label>
-      <input {...input} type={type} />
-      {meta.error && meta.touched && (
-        <div>{meta.error}</div>
-      )}
-    </div>
+    <Fragment>
+      <label className={styles.labels}>{label}</label>
+      <input {...input} type={type} className={styles.inputs} />
+      <div className={styles.inputValidate}>{
+        meta.error && meta.touched && meta.error
+      }
+      </div>
+    </Fragment>
   );
 };

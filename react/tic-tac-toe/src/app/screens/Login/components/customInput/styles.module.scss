@@ -1,0 +1,21 @@
+@import 'src/scss/colors';
+@import 'src/scss/fonts';
+
+.inputs {
+  border-radius: 5px;
+  height: 32px;
+  margin: 8px 0;
+  width: 100%;
+}
+
+.inputValidate {
+  color: $red;
+  font-size: $text-validate;
+  height: 16px;
+  margin: 8px 0;
+}
+
+.labels {
+  display: block;
+  font-size: $subtitle-list;
+}

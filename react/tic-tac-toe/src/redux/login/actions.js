@@ -23,7 +23,11 @@ const actionsCreators = {
   },
   setLogin: () => dispatch => {
     const hasToken = !!localStorage.getItem('token');
-    dispatch({ type: actions.SET_AUTH, hasToken });
+    dispatch({ type: actions.SET_AUTH, hasToken, isError: false });
+  },
+  logOut: () => dispatch => {
+    localStorage.removeItem('token');
+    dispatch({ type: actions.SET_AUTH, hasToken: false, isError: false });
   }
 };
 

@@ -2,13 +2,15 @@ import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
 import { bool, func, string } from 'prop-types';
 
+import { PATHS } from '../../constants/routes';
+
 function ComponentRoute({ component: Component, isPrivate, authed, path }) {
   if (authed && isPrivate) {
     return <Route component={Component} path={path} />;
   } else if (authed) {
-    return <Redirect to="/game" />;
+    return <Redirect to={PATHS.game} />;
   } else if (isPrivate) {
-    return <Redirect to="/" />;
+    return <Redirect to={PATHS.login} />;
   }
   return <Route component={Component} path={path} />;
 }

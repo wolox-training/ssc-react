@@ -3,18 +3,32 @@ import dataFetch from '../../services/MatchesService';
 export const actions = {
   GET_DATA_REQUEST: '@@DATA/GET_DATA_REQUEST',
   GET_DATA_SUCCESS: '@@DATA/GET_DATA_SUCCESS',
-  GET_DATA_FAILURE: '@@DATA/GET_DATA_FAILURE'
+  GET_DATA_FAILURE: '@@DATA/GET_DATA_FAILURE',
+  CREATE_DATA_REQUEST: '@@CREATE_DATA_REQUEST',
+  CREATE_DATA_SUCCESS: '@@CREATE_DATA_SUCCESS'
 };
 
 const actionsCreators = {
-  getData: () => dispatch => {
+  getData: () => async dispatch => {
     dispatch({ type: actions.GET_DATA_REQUEST });
-    dataFetch.getMatches().then(response => {
+    try {
+      const response = await dataFetch.getMatches();
       const { data } = response;
       dispatch({ type: actions.GET_DATA_SUCCESS, data });
-    }).catch((error) => {
+    } catch (error) {
       dispatch({ type: actions.GET_DATA_FAILURE, error });
-    });
+    }
+  },
+  createData: (values, token) => async dispatch => {
+    dispatch({ type: actions.CREATE_DATA_REQUEST });
+    try {
+      await dataFetch.createMatches(values, token);
+      const response = await dataFetch.getMatches();
+      const { data } = response;
+      return dispatch({ type: actions.GET_DATA_SUCCESS, data });
+    } catch (error) {
+      return error;
+    }
   }
 };
 

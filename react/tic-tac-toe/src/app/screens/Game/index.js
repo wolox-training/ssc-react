@@ -5,10 +5,12 @@ import { arrayOf, func, bool } from 'prop-types';
 
 import { matchesPropsTypes } from '../../../constants/propsTypes';
 import dataActions from '../../../redux/data/actions';
+import loginActions from '../../../redux/login/actions';
 
 import Matches from './components/Matches';
 import styles from './styles.module.scss';
 import Board from './components/Board';
+import Navbar from './components/Navbar';
 
 class Game extends Component {
   componentDidMount() {
@@ -16,10 +18,16 @@ class Game extends Component {
     handleGetData();
   }
 
+  logOut = () => {
+    const { handleLogout } = this.props;
+    handleLogout();
+  }
+
   render() {
     const { data, loading } = this.props;
     return (
       <div className={styles.game}>
+        <Navbar handleLogout={this.logOut} />
         <div className={styles.gameBoard}>
           <Board />
         </div>
@@ -29,7 +37,7 @@ class Game extends Component {
               ? <Spinner name="circle" fadeIn="none" />
               : (
                 <Fragment>
-                  <h1 className={styles.titleInfo}>Matches: </h1>
+                  <h1 className={styles.titleInfo}>Matches</h1>
                   <ol className={styles.infoContainer}>{ data.map(Matches) }</ol>
                 </Fragment>
               )
@@ -42,12 +50,14 @@ class Game extends Component {
 
 Game.propTypes = {
   data: arrayOf(matchesPropsTypes).isRequired,
-  handleGetData: func.isRequired,
+  handleGetData: func,
+  handleLogout: func,
   loading: bool
 };
 
 const mapDispatchToProps = dispatch => ({
-  handleGetData: () => dispatch(dataActions.getData())
+  handleGetData: () => dispatch(dataActions.getData()),
+  handleLogout: () => dispatch(loginActions.logOut())
 });
 
 const mapStateToProps = state => ({

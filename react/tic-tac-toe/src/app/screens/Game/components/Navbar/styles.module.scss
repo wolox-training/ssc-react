@@ -1,0 +1,33 @@
+@import 'src/scss/colors.scss';
+@import 'src//scss/fonts';
+
+.buttonLogout {
+  background: #a5cd3a;
+  box-shadow: -1px 1px 5px 2px $border-grey;
+  cursor: pointer;
+  padding: 12px 20px;
+  border-radius: 7px;
+  color: white;
+  font-size: 18px;
+  font-weight: 600;
+
+  &:hover {
+    transform: scale(1.02, 1.02)
+  }
+}
+
+.navbarContainer {
+  align-items: center;
+  background: $white;
+  border-bottom: 3px solid $primary-color;
+  display: flex;
+  height: 70px;
+  justify-content: space-around;
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+.imageLogo {
+  height: 100%;
+}

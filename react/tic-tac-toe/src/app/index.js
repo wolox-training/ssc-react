@@ -6,35 +6,50 @@ import { bool, func } from 'prop-types';
 
 import loginActions from '../redux/login/actions';
 import { history } from '../redux/store';
-/* import { PRIVATE_ROUTES, PUBLIC_ROUTES } from '../constants/routes'; */
+import { ROUTES } from '../constants/routes';
 
-import Game from './screens/Game';
-import Matches from './screens/Matches';
-import Login from './screens/Login';
 import PrivateRoute from './routes/PrivateRoutes';
-import PublicRoute from './routes/PublicRoutes';
 import '../scss/application.scss';
 
 class App extends Component {
+  state={
+    loading: false
+  };
+
   componentDidMount() {
     const { handleSetLogin } = this.props;
     handleSetLogin();
+    this.changeStateLoading(true);
+  }
+
+  componentDidUpdate = prevProps => {
+    if (this.props.authed !== prevProps.authed) {
+      if (this.props.authed) {
+        this.changeStateLoading(true);
+      }
+      this.changeStateLoading(false);
+    }
+  }
+
+  changeStateLoading = isLogin => {
+    this.setState({ loading: isLogin });
   }
 
   render() {
     const { authed } = this.props;
-    if (authed) {
-      return (
-        <ConnectedRouter history={history}>
-          <Switch>
-            <PrivateRoute authed={authed} path="/game" component={Game} />
-            <PrivateRoute authed={authed} path="/matches" component={Matches} />
-            <PublicRoute authed={authed} exact path="/" component={Login} />
-          </Switch>
-        </ConnectedRouter>
-      );
+    const { loading } = this.state;
+    if (loading) {
+      return <div>loading...</div>;
     }
-    return <Login />;
+    return (
+      <ConnectedRouter history={history}>
+        <Switch>
+          {
+            ROUTES.map(route => <PrivateRoute isPrivate={route.private} key={route.path} authed={authed} path={route.path} component={route.component} />)
+          }
+        </Switch>
+      </ConnectedRouter>
+    );
   }
 }
 
@@ -44,11 +59,12 @@ App.propTypes = {
 };
 
 const mapDispatchToProps = dispatch => ({
-  handleSetLogin: () => dispatch(loginActions.setLogin())
+  handleSetLogin: () => dispatch(loginActions.setAuth())
 });
 
 const mapStateToProps = state => ({
-  authed: state.login.isUserLoggedIn
+  authed: state.login.isUserLoggedIn,
+  loading: state.login.loading
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

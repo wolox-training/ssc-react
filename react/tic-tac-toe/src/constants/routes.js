@@ -8,7 +8,7 @@ export const PATHS = {
   matches: '/matches'
 };
 
-export const PRIVATE_ROUTES = [
+export const ROUTES = [
   {
     component: Game,
     path: PATHS.game,
@@ -18,10 +18,7 @@ export const PRIVATE_ROUTES = [
     component: Matches,
     path: PATHS.matches,
     private: true
-  }
-];
-
-export const PUBLIC_ROUTES = [
+  },
   {
     component: Login,
     path: PATHS.login

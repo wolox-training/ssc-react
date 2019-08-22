@@ -17,16 +17,16 @@
 }
 
 .game-info {
-  box-shadow: -1px 1px 5px 2px $border-grey;
-  width: 300px;
-  font-size: 20px;
-  height: 100%;
-  position: fixed;
-  flex-direction: column;
-  display: flex;
-  right: 0;
   background: $white;
+  box-shadow: -1px 1px 5px 2px $border-grey;
+  display: flex;
+  flex-direction: column;
+  font-size: $text-detail;
+  height: 100%;
+  right: 0;
+  position: fixed;
   top: 70px;
+  width: 300px;
 }
 
 .itemHistory {

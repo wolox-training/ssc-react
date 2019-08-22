@@ -18,7 +18,7 @@ const actionsCreators = {
       }
       return dispatch({ type: actions.SET_AUTH, hasToken: false, isError: true });
     } catch (error) {
-      return error;
+      return dispatch({ type: actions.SET_AUTH, hasToken: false, isError: true });
     }
   },
   setAuth: () => dispatch => {

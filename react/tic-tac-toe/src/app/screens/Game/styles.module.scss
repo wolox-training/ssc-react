@@ -13,7 +13,7 @@
   width: 100%;
 }
 
-.gameBoard {
+.game-board {
   font-size: $text-detail;
   text-align: center;
 }
@@ -25,11 +25,11 @@
   width: 300px;
 }
 
-.itemInfo {
+.item-info {
   margin: 10px;
 }
 
-.infoContainer {
+.info-container {
   background: $white;
   border-radius: 7px;
   box-shadow: 2px 2px 9px 1px $border-grey;
@@ -42,7 +42,7 @@
   margin: 0 auto;
 }
 
-.titleInfo {
+.title-info {
   color: $detail-black;
   font-size: $text-detail;
   margin-bottom: 20px;

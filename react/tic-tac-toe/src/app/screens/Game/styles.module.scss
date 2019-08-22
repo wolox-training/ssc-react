@@ -29,11 +29,20 @@
   top: 70px;
 }
 
+.itemHistory {
+  text-align: center;
+  border-radius: 3px;
+  width: 140px;
+  margin: 20px auto;
+  padding: 3px;
+}
+
 .itemInfo {
   margin: 10px;
 }
 
 .infoContainer {
+  height: calc(100vh - 155px);
   margin: 10px;
   overflow-y: scroll;
   padding: 0;
@@ -41,6 +50,13 @@
 
 .spinner {
   margin: 0 auto;
+}
+
+.status {
+  color: $detail-black;
+  font-size: 18px;
+  margin-top: 28px;
+  text-align: center;
 }
 
 .titleInfo {

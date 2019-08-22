@@ -13,19 +13,20 @@ const actionsCreators = {
     dispatch({ type: actions.GET_DATA_REQUEST });
     try {
       const response = await dataFetch.getMatches();
+      console.log(response.data);
       const { data } = response;
       dispatch({ type: actions.GET_DATA_SUCCESS, data });
     } catch (error) {
       dispatch({ type: actions.GET_DATA_FAILURE, error });
     }
   },
-  createData: (values, token) => async dispatch => {
+  createData: (values) => async dispatch => {
     dispatch({ type: actions.CREATE_DATA_REQUEST });
     try {
+      const token = localStorage.getItem('token');
       await dataFetch.createMatches(values, token);
       const response = await dataFetch.getMatches();
       const { data } = response;
-      return dispatch({ type: actions.GET_DATA_SUCCESS, data });
     } catch (error) {
       return error;
     }

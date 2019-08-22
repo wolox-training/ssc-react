@@ -35,7 +35,7 @@ App.propTypes = {
 };
 
 const mapDispatchToProps = dispatch => ({
-  handleSetLogin: () => dispatch(loginActions.setLogin())
+  handleSetLogin: () => dispatch(loginActions.setAuth())
 });
 
 const mapStateToProps = state => ({

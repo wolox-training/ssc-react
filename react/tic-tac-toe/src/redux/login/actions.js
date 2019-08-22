@@ -21,7 +21,7 @@ const actionsCreators = {
       return error;
     }
   },
-  setLogin: () => dispatch => {
+  setAuth: () => dispatch => {
     const hasToken = !!localStorage.getItem('token');
     dispatch({ type: actions.SET_AUTH, hasToken });
   }

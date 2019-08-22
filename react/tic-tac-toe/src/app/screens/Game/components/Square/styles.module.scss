@@ -1,20 +1,16 @@
 @import 'src/scss/colors.scss';
-
-$square-background: $white;
-$square-border: $dust-gray;
+@import 'src//scss/fonts';
 
 .square {
   background: $white;
   border-radius: 7px;
   box-shadow: 2px 2px 9px 1px $border-grey;
   float: left;
-  font-size: 24px;
+  font-size: $subtitle-square;
   font-weight: bold;
   height: 90px;
   line-height: 34px;
   margin: 10px;
-  margin-right: -1px;
-  margin-top: -1px;
   padding: 5px;
   text-align: center;
   transition: transform 300ms ease;

@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { ConnectedRouter } from 'connected-react-router';
-import { Route, Switch } from 'react-router-dom';
+import { Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bool, func } from 'prop-types';
 
 import loginActions from '../redux/login/actions';
 import { history } from '../redux/store';
-import { PRIVATE_ROUTES, PUBLIC_ROUTES } from '../constants/routes';
+/* import { PRIVATE_ROUTES, PUBLIC_ROUTES } from '../constants/routes'; */
 
 import Game from './screens/Game';
 import Matches from './screens/Matches';

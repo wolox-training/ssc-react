@@ -91,6 +91,7 @@ class Game extends Component {
     const moves = history.map((i, move) => {
       const desc = move ? `Go to move #${move}` : 'Go to game start';
       return (
+        // eslint-disable-next-line react/no-array-index-key
         <li key={move} className={styles.itemHistory}>
           <button type="button" onClick={this.jumpTo(move)}>{desc}</button>
         </li>

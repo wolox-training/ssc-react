@@ -8,10 +8,10 @@ export const CustomInput = props => {
     <Fragment>
       <label className={styles.labels}>{label}</label>
       <input {...input} type={type} className={styles.inputs} />
-      <div className={styles.inputValidate}>{
+      <p className={styles.inputValidate}>{
         meta.error && meta.touched && meta.error
       }
-      </div>
+      </p>
     </Fragment>
   );
 };

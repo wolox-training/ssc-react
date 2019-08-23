@@ -2,12 +2,12 @@
 @import 'src//scss/fonts';
 
 .button-logout {
-  background: #a5cd3a;
+  background: $detail-green;
   box-shadow: -1px 1px 5px 2px $border-grey;
   cursor: pointer;
   padding: 12px 20px;
   border-radius: 7px;
-  color: white;
+  color: $white;
   font-size: 18px;
   font-weight: 600;
 
@@ -30,4 +30,15 @@
 
 .image-logo {
   height: 100%;
+}
+
+.item-nav {
+  color: $detail-black;
+  font-size: 20px;
+  font-weight: 500;
+  margin: 0 25px;
+
+  &:hover {
+    color: $dark-gray;
+  }
 }

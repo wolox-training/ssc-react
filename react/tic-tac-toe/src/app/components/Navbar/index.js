@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { func } from 'prop-types';
+import { func, string } from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
@@ -29,7 +29,9 @@ class Navbar extends Component {
 }
 
 Navbar.propTypes = {
-  handleLogout: func
+  handleLogout: func,
+  label: string,
+  to: string
 };
 
 const mapDispatchToProps = dispatch => ({

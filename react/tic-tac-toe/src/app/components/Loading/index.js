@@ -1,15 +1,14 @@
 import React from 'react';
+import Spinner from 'react-spinkit';
 
 function Loading (Component) {
-  return function LoadingComponent({ isLoading, ...props }) {
-    if (!isLoading) {
+  return function LoadingComponent({ loading, ...props }) {
+    if (!loading) {
       return <Component {...props} />;
     }
     return (
       <div>
-        <p>
-          Loading...
-        </p>
+        <Spinner name="circle" fadeIn="none" />
       </div>
     );
   };

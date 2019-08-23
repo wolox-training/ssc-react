@@ -1,6 +1,6 @@
 import React from 'react';
 
-import players from '../../../../constants/player';
+import players from '../../../../../constants/player';
 
 import styles from './styles.module.scss';
 

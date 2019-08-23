@@ -4,10 +4,10 @@ import { arrayOf, func } from 'prop-types';
 
 import dataActions from '../../../redux/data/actions';
 import { matchesPropsTypes } from '../../../constants/propsTypes';
-import Navbar from '../Game/components/Navbar';
+import Navbar from '../../components/Navbar';
 
 import styles from './styles.module.scss';
-import MatchesList from './MatchesList';
+import MatchesList from './components/MatchesList';
 
 class Matches extends Component {
   componentDidMount() {

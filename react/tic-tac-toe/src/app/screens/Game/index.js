@@ -3,23 +3,17 @@ import { connect } from 'react-redux';
 import { func } from 'prop-types';
 
 import dataActions from '../../../redux/data/actions';
-import loginActions from '../../../redux/login/actions';
 import players from '../../../constants/player';
+import Navbar from '../../components/Navbar';
 
 import styles from './styles.module.scss';
 import Board from './components/Board';
-import Navbar from './components/Navbar';
 
 class Game extends Component {
   state = {
     history: [{ squares: Array(9).fill(null) }],
     xIsNext: true,
     stepNumber: 0
-  }
-
-  logOut = () => {
-    const { handleLogout } = this.props;
-    handleLogout();
   }
 
   handleClick = i => () => {
@@ -99,7 +93,7 @@ class Game extends Component {
     });
     return (
       <div className={styles.game}>
-        <Navbar handleLogout={this.logOut} />
+        <Navbar />
         <div className={styles.gameBoard}>
           <Board
             squares={current.squares}
@@ -117,12 +111,10 @@ class Game extends Component {
 }
 
 Game.propTypes = {
-  handleCreateMatch: func,
-  handleLogout: func
+  handleCreateMatch: func
 };
 
 const mapDispatchToProps = dispatch => ({
-  handleLogout: () => dispatch(loginActions.logOut()),
   handleCreateMatch: (values) => dispatch(dataActions.createData(values))
 });
 

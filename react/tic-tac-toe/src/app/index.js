@@ -1,51 +1,49 @@
 import React, { Component } from 'react';
-import { ConnectedRouter } from 'connected-react-router';
-import { Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { bool, func } from 'prop-types';
+import { func, bool } from 'prop-types';
+import { Switch } from 'react-router-dom';
+import { ConnectedRouter } from 'connected-react-router';
 
 import loginActions from '../redux/login/actions';
 import { history } from '../redux/store';
 import { ROUTES } from '../constants/routes';
 
-import PrivateRoute from './routes/PrivateRoutes';
+import RenderRoutes from './routes/RenderRoutes';
 import '../scss/application.scss';
 
 class App extends Component {
-  state={
-    loading: false
+  state ={
+    initApp: true
   };
 
   componentDidMount() {
     const { handleSetLogin } = this.props;
-    handleSetLogin();
-    this.changeStateLoading(true);
+    handleSetLogin(this.handleSet);
   }
 
-  componentDidUpdate = prevProps => {
-    if (this.props.authed !== prevProps.authed) {
-      if (this.props.authed) {
-        this.changeStateLoading(true);
-      }
-      this.changeStateLoading(false);
-    }
-  }
-
-  changeStateLoading = isLogin => {
-    this.setState({ loading: isLogin });
+  handleSet = () => {
+    this.setState({ initApp: false });
   }
 
   render() {
     const { authed } = this.props;
-    const { loading } = this.state;
-    if (loading) {
-      return <div>loading...</div>;
+    const { initApp } = this.state;
+    if (initApp) {
+      return <div>Loading</div>;
     }
     return (
       <ConnectedRouter history={history}>
         <Switch>
           {
-            ROUTES.map(route => <PrivateRoute isPrivate={route.private} key={route.path} authed={authed} path={route.path} component={route.component} />)
+            ROUTES.map(route => (
+              <RenderRoutes
+                isPrivate={route.private}
+                key={route.path}
+                authed={authed}
+                path={route.path}
+                component={route.component}
+              />
+            ))
           }
         </Switch>
       </ConnectedRouter>
@@ -59,12 +57,11 @@ App.propTypes = {
 };
 
 const mapDispatchToProps = dispatch => ({
-  handleSetLogin: () => dispatch(loginActions.setAuth())
+  handleSetLogin: exec => dispatch(loginActions.setAuth(exec))
 });
 
 const mapStateToProps = state => ({
-  authed: state.login.isUserLoggedIn,
-  loading: state.login.loading
+  authed: state.login.isUserLoggedIn
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

@@ -4,7 +4,7 @@ import { bool, func, string } from 'prop-types';
 
 /* import { PATHS } from '../../../constants/routes'; */
 
-const PrivateRoute = ({ isPrivate, component: Component, authed, rest }) => {
+const RenderRoutes = ({ isPrivate, component: Component, authed, rest }) => {
   if (isPrivate) {
     return (
       <Route
@@ -31,10 +31,10 @@ const PrivateRoute = ({ isPrivate, component: Component, authed, rest }) => {
   );
 };
 
-PrivateRoute.propTypes = {
+RenderRoutes.propTypes = {
   authed: bool,
   component: func,
   path: string
 };
 
-export default PrivateRoute;
+export default RenderRoutes;

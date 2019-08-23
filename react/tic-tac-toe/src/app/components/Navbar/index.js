@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { func } from 'prop-types';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 import Logo from '../../assets/LogoWolox.png';
 import loginActions from '../../../redux/login/actions';
@@ -14,10 +15,14 @@ class Navbar extends Component {
   }
 
   render() {
+    const { label, to } = this.props;
     return (
       <div className={styles.navbarContainer}>
         <img src={Logo} className={styles.imageLogo} alt="logo" />
-        <button className={styles.buttonLogout} type="button" onClick={this.handleLogout}>Logout</button>
+        <ul>
+          <Link to={to} className={styles.itemNav}>{label}</Link>
+          <button className={styles.buttonLogout} type="button" onClick={this.handleLogout}>Logout</button>
+        </ul>
       </div>
     );
   }

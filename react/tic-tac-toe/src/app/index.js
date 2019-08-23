@@ -13,23 +13,25 @@ import '../scss/application.scss';
 
 class App extends Component {
   state ={
-    initApp: true
+    redirectToReferrer: false
   };
 
   componentDidMount() {
     const { handleSetLogin } = this.props;
-    handleSetLogin(this.handleSet);
+    handleSetLogin();
+    this.handleSet();
   }
 
   handleSet = () => {
-    this.setState({ initApp: false });
+    const redirectToReferrer = this.props.handleSetLogin();
+    this.setState({ redirectToReferrer });
   }
 
   render() {
     const { authed } = this.props;
-    const { initApp } = this.state;
-    if (initApp) {
-      return <div>Loading</div>;
+    const { redirectToReferrer } = this.state;
+    if (!redirectToReferrer) {
+      return <div>Loading...</div>;
     }
     return (
       <ConnectedRouter history={history}>

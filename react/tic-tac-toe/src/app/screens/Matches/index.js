@@ -23,7 +23,7 @@ class Matches extends Component {
     const percentTwo = Math.round(100 * playerTwo.length / data.length);
     return (
       <Fragment>
-        <Navbar handleLogout={this.logOut} />
+        <Navbar label="Game" to="/game" />
         <div className={styles.infoContainer}>
           <ul className={styles.listMatches}>
             <li className={styles.itemInfo}>

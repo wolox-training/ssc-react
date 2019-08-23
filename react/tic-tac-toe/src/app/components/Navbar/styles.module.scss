@@ -1,7 +1,7 @@
 @import 'src/scss/colors.scss';
 @import 'src//scss/fonts';
 
-.buttonLogout {
+.button-logout {
   background: #a5cd3a;
   box-shadow: -1px 1px 5px 2px $border-grey;
   cursor: pointer;
@@ -16,7 +16,7 @@
   }
 }
 
-.navbarContainer {
+.navbar-container {
   align-items: center;
   background: $white;
   border-bottom: 3px solid $primary-color;
@@ -28,6 +28,6 @@
   width: 100%;
 }
 
-.imageLogo {
+.image-logo {
   height: 100%;
 }

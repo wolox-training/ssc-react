@@ -21,10 +21,10 @@ const actionsCreators = {
       return dispatch({ type: actions.LOGIN_FAILURE, hasToken: false, isError: true });
     }
   },
-  setAuth: setInitApp => dispatch => {
+  setAuth: () => dispatch => {
     const hasToken = !!localStorage.getItem('token');
     dispatch({ type: actions.LOGIN_SUCCESS, hasToken, isError: false });
-    setInitApp();
+    return true;
   },
   logOut: () => dispatch => {
     localStorage.removeItem('token');

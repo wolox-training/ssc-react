@@ -93,7 +93,7 @@ class Game extends Component {
     });
     return (
       <div className={styles.game}>
-        <Navbar />
+        <Navbar label="Matches" to="/matches" />
         <div className={styles.gameBoard}>
           <Board
             squares={current.squares}

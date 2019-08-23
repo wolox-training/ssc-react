@@ -23,7 +23,7 @@ const login = (state = initialState, action) => {
       return {
         ...state,
         isUserLoggedIn: action.hasToken,
-        isUserError: true
+        isUserError: action.isError
       };
     default:
       return state;

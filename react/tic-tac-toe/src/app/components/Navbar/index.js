@@ -15,7 +15,9 @@ class Navbar extends Component {
   }
 
   render() {
-    const { label, to } = this.props;
+    const { pathname } = this.props;
+    const to = pathname === '/game' ? '/matches' : '/game';
+    const label = to.substring(1);
     return (
       <div className={styles.navbarContainer}>
         <img src={Logo} className={styles.imageLogo} alt="logo" />
@@ -30,12 +32,15 @@ class Navbar extends Component {
 
 Navbar.propTypes = {
   handleLogout: func,
-  label: string,
-  to: string
+  pathname: string
 };
 
 const mapDispatchToProps = dispatch => ({
   handleLogout: () => dispatch(loginActions.logOut())
 });
 
-export default connect(null, mapDispatchToProps)(Navbar);
+const mapStateToProps = state => ({
+  pathname: state.router.location.pathname
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Navbar);

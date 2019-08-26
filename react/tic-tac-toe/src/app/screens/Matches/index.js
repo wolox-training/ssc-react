@@ -4,13 +4,9 @@ import { arrayOf, func, bool } from 'prop-types';
 
 import dataActions from '../../../redux/data/actions';
 import { matchesPropsTypes } from '../../../constants/propsTypes';
-import Navbar from '../../components/Navbar';
-import withLoading from '../../components/Loading';
 
 import styles from './styles.module.scss';
-import ContainerList from './components/ContainerList';
-
-const ListWithLoading = withLoading(ContainerList);
+import Layout from './components/Layout';
 
 class Matches extends Component {
   componentDidMount() {
@@ -26,10 +22,9 @@ class Matches extends Component {
     const percentTwo = playerTwoHasWon.length > 0 ? Math.round(100 * playerTwoHasWon.length / data.length) : 0;
     return (
       <Fragment>
-        <Navbar label="Game" to="/game" />
         <div className={styles.infoContainer}>
           <ul className={styles.listMatches}>
-            <ListWithLoading data={data} loading={loading} />
+            <Layout data={data} loading={loading} />
           </ul>
           <div className={styles.percentContainer}>
             <h1 className={styles.winnerOne}>{`Player One has won: ${percentOne}%`}</h1>

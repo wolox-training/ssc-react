@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { func, bool } from 'prop-types';
 import { Switch } from 'react-router-dom';
@@ -9,6 +9,7 @@ import { history } from '../redux/store';
 import { ROUTES } from '../constants/routes';
 
 import RenderRoutes from './routes/RenderRoutes';
+import Navbar from './components/Navbar';
 import '../scss/application.scss';
 
 class App extends Component {
@@ -19,10 +20,10 @@ class App extends Component {
   componentDidMount() {
     const { handleSetLogin } = this.props;
     handleSetLogin();
-    this.handleSet();
+    this.setIfRedirect();
   }
 
-  handleSet = () => {
+  setIfRedirect = () => {
     const redirectToReferrer = this.props.handleSetLogin();
     this.setState({ redirectToReferrer });
   }
@@ -35,19 +36,22 @@ class App extends Component {
     }
     return (
       <ConnectedRouter history={history}>
-        <Switch>
-          {
-            ROUTES.map(route => (
-              <RenderRoutes
-                isPrivate={route.private}
-                key={route.path}
-                authed={authed}
-                path={route.path}
-                component={route.component}
-              />
-            ))
-          }
-        </Switch>
+        <Fragment>
+          {authed ? <Navbar /> : null}
+          <Switch>
+            {
+              ROUTES.map(route => (
+                <RenderRoutes
+                  isPrivate={route.private}
+                  key={route.path}
+                  authed={authed}
+                  path={route.path}
+                  component={route.component}
+                />
+              ))
+            }
+          </Switch>
+        </Fragment>
       </ConnectedRouter>
     );
   }

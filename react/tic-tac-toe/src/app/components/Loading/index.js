@@ -6,11 +6,7 @@ function Loading (Component) {
     if (!loading) {
       return <Component {...props} />;
     }
-    return (
-      <div>
-        <Spinner name="circle" fadeIn="none" />
-      </div>
-    );
+    return <Spinner className="spinner" name="circle" fadeIn="none" />;
   };
 }
 

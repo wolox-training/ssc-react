@@ -4,7 +4,6 @@ import { func } from 'prop-types';
 
 import dataActions from '../../../redux/data/actions';
 import players from '../../../constants/player';
-import Navbar from '../../components/Navbar';
 
 import styles from './styles.module.scss';
 import Board from './components/Board';
@@ -92,7 +91,6 @@ class Game extends Component {
     });
     return (
       <div className={styles.game}>
-        <Navbar label="Matches" to="/matches" />
         <div className={styles.gameBoard}>
           <Board
             squares={current.squares}

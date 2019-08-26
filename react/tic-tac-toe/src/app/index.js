@@ -13,31 +13,30 @@ import Navbar from './components/Navbar';
 import '../scss/application.scss';
 
 class App extends Component {
-  state ={
+  state = {
     redirectToReferrer: false
-  };
+  }
 
   componentDidMount() {
     const { handleSetLogin } = this.props;
     handleSetLogin();
-    this.setIfRedirect();
+    this.setRedirectToReferrer();
   }
 
-  setIfRedirect = () => {
+  setRedirectToReferrer = () => {
     const redirectToReferrer = this.props.handleSetLogin();
     this.setState({ redirectToReferrer });
   }
 
   render() {
     const { authed } = this.props;
-    const { redirectToReferrer } = this.state;
-    if (!redirectToReferrer) {
-      return <div>Loading...</div>;
+    if (!this.state.redirectToReferrer) {
+      return <Fragment>Loading...</Fragment>;
     }
     return (
       <ConnectedRouter history={history}>
         <Fragment>
-          {authed ? <Navbar /> : null}
+          {authed && <Navbar />}
           <Switch>
             {
               ROUTES.map(route => (
@@ -63,7 +62,7 @@ App.propTypes = {
 };
 
 const mapDispatchToProps = dispatch => ({
-  handleSetLogin: exec => dispatch(loginActions.setAuth(exec))
+  handleSetLogin: () => dispatch(loginActions.setAuth())
 });
 
 const mapStateToProps = state => ({

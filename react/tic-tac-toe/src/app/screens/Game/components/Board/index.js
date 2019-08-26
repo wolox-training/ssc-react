@@ -1,25 +1,50 @@
-import React, { Component } from 'react';
-import { arrayOf, func, string, bool } from 'prop-types';
+import React, { Component, Fragment } from 'react';
+import { arrayOf, func, string } from 'prop-types';
+import { connect } from 'react-redux';
 
+import dataActions from '../../../../../redux/data/actions';
+import { PLAYERS, PLAYER_TYPE, NAME } from '../../../../../constants/player';
 import Square from '../Square';
 
 import styles from './styles.module.scss';
 
 class Board extends Component {
   renderSquare(i) {
-    const { squares, onClick, disable } = this.props;
+    const { squares, onClick, winner } = this.props;
     return (
       <Square
         value={squares[i]}
         onClick={onClick(i)}
-        disable={disable}
+        disable={!!winner}
       />
     );
   }
 
+  createNewMatch = winner => {
+    const { handleCreateMatch } = this.props;
+    let winnerForSend = '';
+    if (winner === PLAYER_TYPE.TIE) {
+      winnerForSend = PLAYER_TYPE.TIE;
+    } else if (winner === PLAYER_TYPE.X) {
+      winnerForSend = [PLAYERS.playerOne];
+    } else if (winner === PLAYER_TYPE.O) {
+      winnerForSend = [PLAYERS.playerTwo];
+    }
+    const values = {
+      [PLAYERS.playerOne]: NAME.PLAYER_ONE,
+      [PLAYERS.playerTwo]: NAME.PLAYER_TWO,
+      winner: winnerForSend
+    };
+    handleCreateMatch(values);
+  }
+
   render() {
+    const { winner } = this.props;
+    if (winner) {
+      this.createNewMatch(winner);
+    }
     return (
-      <div>
+      <Fragment>
         <div className={styles.boardRow}>
           {this.renderSquare(0)}
           {this.renderSquare(1)}
@@ -35,15 +60,20 @@ class Board extends Component {
           {this.renderSquare(7)}
           {this.renderSquare(8)}
         </div>
-      </div>
+      </Fragment>
     );
   }
 }
 
 Board.propTypes = {
-  disable: bool,
+  handleCreateMatch: func,
   squares: arrayOf(string),
+  winner: string,
   onClick: func
 };
 
-export default Board;
+const mapDispatchToProps = dispatch => ({
+  handleCreateMatch: (values) => dispatch(dataActions.createData(values))
+});
+
+export default connect(null, mapDispatchToProps)(Board);

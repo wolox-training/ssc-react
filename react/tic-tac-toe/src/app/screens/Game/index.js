@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { func } from 'prop-types';
 
-import dataActions from '../../../redux/data/actions';
-import players from '../../../constants/player';
+import { PLAYER_TYPE } from '../../../constants/player';
 
 import styles from './styles.module.scss';
 import Board from './components/Board';
+
 
 class Game extends Component {
   state = {
@@ -15,31 +13,14 @@ class Game extends Component {
     stepNumber: 0
   }
 
-  handleClick = i => () => {
+  handleClick = (i) => () => {
     const { xIsNext, stepNumber, history } = this.state;
-    const { handleCreateMatch } = this.props;
     const current = history.slice(0, stepNumber + 1)[history.length - 1];
     const squares = current.squares.slice();
     if (squares[i]) {
       return;
     }
-    squares[i] = xIsNext ? 'X' : 'O';
-    if (this.calculateWinner(squares)) {
-      let winner = '';
-      if (this.calculateWinner(squares) === 'Tie') {
-        winner = 'Tie';
-      } else if (this.calculateWinner(squares) === 'X') {
-        winner = 'player_one';
-      } else if (this.calculateWinner(squares) === 'O') {
-        winner = 'player_two';
-      }
-      const values = {
-        [players.playerOne]: 'Tic',
-        [players.playerTwo]: 'Tac',
-        winner
-      };
-      handleCreateMatch(values);
-    }
+    squares[i] = xIsNext ? PLAYER_TYPE.X : PLAYER_TYPE.O;
     this.setState({
       history: history.concat([{ squares }]),
       xIsNext: !xIsNext,
@@ -63,7 +44,7 @@ class Game extends Component {
       if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
         return squares[a];
       } else if (!squares.includes(null)) {
-        return 'Tie';
+        return PLAYER_TYPE.TIE;
       }
     }
     return null;
@@ -80,7 +61,7 @@ class Game extends Component {
     const { xIsNext, history, stepNumber } = this.state;
     const current = history[stepNumber];
     const winner = this.calculateWinner(current.squares);
-    const status = winner ? `Winner:${winner}` : `Next player: ${xIsNext ? 'X' : 'O'}`;
+    const status = winner ? `Winner:${winner}` : `Next player: ${xIsNext ? PLAYER_TYPE.X : PLAYER_TYPE.O}`;
     const moves = history.map((i, move) => {
       const desc = move ? `Go to move #${move}` : 'Go to game start';
       return (
@@ -95,7 +76,7 @@ class Game extends Component {
           <Board
             squares={current.squares}
             onClick={this.handleClick}
-            disable={!!this.calculateWinner(current.squares)}
+            winner={winner}
           />
         </div>
         <div className={styles.gameInfo}>
@@ -107,12 +88,4 @@ class Game extends Component {
   }
 }
 
-Game.propTypes = {
-  handleCreateMatch: func
-};
-
-const mapDispatchToProps = dispatch => ({
-  handleCreateMatch: (values) => dispatch(dataActions.createData(values))
-});
-
-export default connect(null, mapDispatchToProps)(Game);
+export default Game;

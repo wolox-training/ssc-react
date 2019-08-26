@@ -1,9 +1,10 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { arrayOf, func, bool } from 'prop-types';
 
 import dataActions from '../../../redux/data/actions';
 import { matchesPropsTypes } from '../../../constants/propsTypes';
+import calculatePercent from '../../../utils/calcultePercent';
 
 import styles from './styles.module.scss';
 import Layout from './components/Layout';
@@ -16,22 +17,17 @@ class Matches extends Component {
 
   render() {
     const { data, loading } = this.props;
-    const playerOneHasWon = data.filter(item => item.winner === 'player_one');
-    const playerTwoHasWon = data.filter(item => item.winner === 'player_two');
-    const percentOne = playerOneHasWon.length > 0 ? Math.round(100 * playerOneHasWon.length / data.length) : 0;
-    const percentTwo = playerTwoHasWon.length > 0 ? Math.round(100 * playerTwoHasWon.length / data.length) : 0;
+    const { percentOne, percentTwo } = calculatePercent(data);
     return (
-      <Fragment>
-        <div className={styles.infoContainer}>
-          <ul className={styles.listMatches}>
-            <Layout data={data} loading={loading} />
-          </ul>
-          <div className={styles.percentContainer}>
-            <h1 className={styles.winnerOne}>{`Player One has won: ${percentOne}%`}</h1>
-            <h1 className={styles.winnerTwo}>{`Player Two has won: ${percentTwo}%`}</h1>
-          </div>
+      <div className={styles.infoContainer}>
+        <ul className={styles.listMatches}>
+          <Layout data={data} loading={loading} />
+        </ul>
+        <div className={styles.percentContainer}>
+          <h1 className={styles.winnerOne}>{`Player One has won: ${percentOne}%`}</h1>
+          <h1 className={styles.winnerTwo}>{`Player Two has won: ${percentTwo}%`}</h1>
         </div>
-      </Fragment>
+      </div>
     );
   }
 }

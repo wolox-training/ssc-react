@@ -1,29 +1,16 @@
 import React, { Fragment } from 'react';
 import { arrayOf } from 'prop-types';
 
-import players from '../../../../../constants/player';
 import { matchesPropsTypes } from '../../../../../constants/propsTypes';
 import withLoading from '../../../../components/Loading';
-
-import styles from './styles.module.scss';
+import ListMatches from '../ListMatches';
+import HEADER from '../../../../../constants/header';
 
 function Layout({ data }) {
   return (
     <Fragment>
-      <li className={styles.itemInfo}>
-        <p className={styles.textInfo}>Player #1</p>
-        <p className={styles.textInfo}>Player #2</p>
-        <p className={styles.textInfo}>Winner</p>
-      </li>
-      {
-        data.map(item => (
-          <li key={item.id} className={styles.itemInfo}>
-            <p className={styles.textInfo}>{item[players.playerOne]}</p>
-            <p className={styles.textInfo}>{item[players.playerTwo]}</p>
-            <p className={styles.textInfo}>{item.winner}</p>
-          </li>
-        ))
-      }
+      <ListMatches item={HEADER} />
+      { data.map(item => <ListMatches item={item} key={item.id} />)}
     </Fragment>
   );
 }

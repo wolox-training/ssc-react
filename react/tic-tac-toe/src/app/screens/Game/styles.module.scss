@@ -1,21 +1,51 @@
+@import 'src/scss/colors.scss';
+@import 'src//scss/fonts';
+
 .game {
+  align-items: center;
+  background: $background-color;
   display: flex;
   flex-direction: row;
+  justify-content: space-around;
+  margin: 0 auto;
+  max-width: 1200px;
+  min-height: 100vh;
+  width: 100%;
+}
+
+.game-board {
+  font-size: $text-detail;
+  text-align: center;
 }
 
 .game-info {
-  margin-left: 20px;
-  width: 150px;
+  font-size: $text-detail;
+  height: 365px;
+  margin: 25px;
+  width: 300px;
 }
 
-.itemInfo {
+.item-info {
   margin: 10px;
 }
 
-.infoContainer {
-  padding: 0;
+.info-container {
+  background: $white;
+  border-radius: 7px;
+  box-shadow: 2px 2px 9px 1px $border-grey;
+  height: 320px;
+  overflow-y: scroll;
+  padding: 10px;
 }
 
 .spinner {
   margin: 0 auto;
+}
+
+.title-info {
+  color: $detail-black;
+  font-size: $text-detail;
+  margin-bottom: 20px;
+  text-align: center;
+  width: 100%;
 }

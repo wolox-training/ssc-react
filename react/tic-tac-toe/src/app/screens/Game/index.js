@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import Spinner from 'react-spinkit';
 import { connect } from 'react-redux';
 import { arrayOf, func, bool } from 'prop-types';
@@ -27,7 +27,12 @@ class Game extends Component {
           {
             loading
               ? <Spinner name="circle" fadeIn="none" />
-              : <ol className={styles.infoContainer}>{ data.map(Matches) }</ol>
+              : (
+                <Fragment>
+                  <h1 className={styles.titleInfo}>Matches: </h1>
+                  <ol className={styles.infoContainer}>{ data.map(Matches) }</ol>
+                </Fragment>
+              )
           }
         </div>
       </div>

@@ -1,7 +1,10 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { arrayOf, func, string, bool } from 'prop-types';
+import { connect } from 'react-redux';
 
 import Square from '../Square';
+import dataActions from '../../../../../redux/data/actions';
+import players from '../../../../../constants/player';
 
 import styles from './styles.module.scss';
 
@@ -17,9 +20,31 @@ class Board extends Component {
     );
   }
 
+  handleCreateMatch = (winner) => {
+    const { handleCreateMatch } = this.props;
+    let valueWinner = '';
+    if (winner === players.tie) {
+      valueWinner = players.tie;
+    } else if (winner === players.x) {
+      valueWinner = players.playerOne;
+    } else if (winner === players.o) {
+      valueWinner = players.playerTwo;
+    }
+    const values = {
+      [players.playerOne]: players.names.p1,
+      [players.playerTwo]: players.names.p2,
+      winner: valueWinner
+    };
+    handleCreateMatch(values);
+  }
+
   render() {
+    const { winner } = this.props;
+    if (winner) {
+      this.handleCreateMatch(winner);
+    }
     return (
-      <div>
+      <Fragment>
         <div className={styles.boardRow}>
           {this.renderSquare(0)}
           {this.renderSquare(1)}
@@ -35,15 +60,21 @@ class Board extends Component {
           {this.renderSquare(7)}
           {this.renderSquare(8)}
         </div>
-      </div>
+      </Fragment>
     );
   }
 }
 
 Board.propTypes = {
   disable: bool,
+  handleCreateMatch: func,
   squares: arrayOf(string),
+  winner: string,
   onClick: func
 };
 
-export default Board;
+const mapDispatchToProps = dispatch => ({
+  handleCreateMatch: (values) => dispatch(dataActions.createData(values))
+});
+
+export default connect(null, mapDispatchToProps)(Board);

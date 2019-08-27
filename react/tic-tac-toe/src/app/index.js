@@ -32,12 +32,12 @@ class App extends Component {
     const { authed } = this.props;
     const { redirectToReferrer } = this.state;
     if (!redirectToReferrer) {
-      return <div>Loading...</div>;
+      return <Fragment>Loading...</Fragment>;
     }
     return (
       <ConnectedRouter history={history}>
         <Fragment>
-          {authed ? <Navbar /> : null}
+          {authed && <Navbar />}
           <Switch>
             {
               ROUTES.map(route => (
@@ -63,7 +63,7 @@ App.propTypes = {
 };
 
 const mapDispatchToProps = dispatch => ({
-  handleSetLogin: exec => dispatch(loginActions.setAuth(exec))
+  handleSetLogin: () => dispatch(loginActions.setAuth())
 });
 
 const mapStateToProps = state => ({

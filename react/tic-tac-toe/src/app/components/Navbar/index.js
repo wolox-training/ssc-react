@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 
 import Logo from '../../assets/LogoWolox.png';
 import loginActions from '../../../redux/login/actions';
+import { PATHS } from '../../../constants/routes';
 
 import styles from './styles.module.scss';
 
@@ -16,7 +17,7 @@ class Navbar extends Component {
 
   render() {
     const { pathname } = this.props;
-    const to = pathname === '/game' ? '/matches' : '/game';
+    const to = pathname === PATHS.game ? PATHS.matches : PATHS.game;
     const label = to.substring(1);
     return (
       <div className={styles.navbarContainer}>

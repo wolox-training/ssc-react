@@ -4,14 +4,15 @@ import { string, func, bool } from 'prop-types';
 import styles from './styles.module.scss';
 
 function Square(props) {
+  const { onClick, disable, value } = props;
   return (
     <button
       type="button"
-      onClick={props.onClick}
+      onClick={onClick}
       className={styles.square}
-      disabled={props.disable}
+      disabled={disable}
     >
-      {props.value}
+      {value}
     </button>
   );
 }

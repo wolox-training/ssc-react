@@ -2,7 +2,9 @@ import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
 import { bool, func, string } from 'prop-types';
 
-const RenderRoutes = ({ isPrivate, component: Component, authed, rest }) => {
+import { PATHS } from '../../../constants/routes';
+
+const RenderRoutes = ({ isPrivate, component: Component, authed, ...rest }) => {
   if (isPrivate) {
     return (
       <Route
@@ -11,7 +13,7 @@ const RenderRoutes = ({ isPrivate, component: Component, authed, rest }) => {
         render={
           props => authed === true
             ? <Component {...props} />
-            : <Redirect to={{ pathname: '/', state: { from: props.location } }} />
+            : <Redirect to={{ pathname: PATHS.login, state: { from: props.location } }} />
         }
       />
     );
@@ -23,7 +25,7 @@ const RenderRoutes = ({ isPrivate, component: Component, authed, rest }) => {
       render={
         props => authed === false
           ? <Component {...props} />
-          : <Redirect to="/game" />
+          : <Redirect to={PATHS.game} />
       }
     />
   );

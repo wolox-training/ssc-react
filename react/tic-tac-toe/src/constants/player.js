@@ -1,4 +1,4 @@
-const players = {
+export const PLAYERS = {
   playerOne: 'player_one',
   playerTwo: 'player_two',
   x: 'X',
@@ -10,4 +10,13 @@ const players = {
   }
 };
 
-export default players;
+export const NAME = {
+  PLAYER_ONE: 'Tic',
+  PLAYER_TWO: 'Tac'
+};
+
+export const PLAYER_TYPE = {
+  X: 'X',
+  O: 'O',
+  TIE: 'Tie'
+};

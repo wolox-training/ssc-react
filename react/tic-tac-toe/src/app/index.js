@@ -8,30 +8,29 @@ import loginActions from '../redux/login/actions';
 import { history } from '../redux/store';
 import { ROUTES } from '../constants/routes';
 
-import RenderRoutes from './routes/RenderRoutes';
 import Navbar from './components/Navbar';
+import RenderRoutes from './routes/RenderRoutes';
 import '../scss/application.scss';
 
 class App extends Component {
-  state ={
+  state = {
     redirectToReferrer: false
-  };
+  }
 
   componentDidMount() {
     const { handleSetLogin } = this.props;
     handleSetLogin();
-    this.setIfRedirect();
+    this.setRedirectToReferrer();
   }
 
-  setIfRedirect = () => {
+  setRedirectToReferrer = () => {
     const redirectToReferrer = this.props.handleSetLogin();
     this.setState({ redirectToReferrer });
   }
 
   render() {
     const { authed } = this.props;
-    const { redirectToReferrer } = this.state;
-    if (!redirectToReferrer) {
+    if (!this.state.redirectToReferrer) {
       return <Fragment>Loading...</Fragment>;
     }
     return (
@@ -47,6 +46,7 @@ class App extends Component {
                   authed={authed}
                   path={route.path}
                   component={route.component}
+                  exact={route.exact}
                 />
               ))
             }

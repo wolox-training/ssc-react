@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { func, string } from 'prop-types';
+import { func } from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
@@ -16,14 +16,12 @@ class Navbar extends Component {
   }
 
   render() {
-    const { pathname } = this.props;
-    const to = pathname === PATHS.game ? PATHS.matches : PATHS.game;
-    const label = to.substring(1);
     return (
       <div className={styles.navbarContainer}>
         <img src={Logo} className={styles.imageLogo} alt="logo" />
         <ul>
-          <Link to={to} className={styles.itemNav}>{label}</Link>
+          <Link to={PATHS.matches} className={styles.itemNav}>Matches</Link>
+          <Link to={PATHS.game} className={styles.itemNav}>Game</Link>
           <button className={styles.buttonLogout} type="button" onClick={this.handleLogout}>Logout</button>
         </ul>
       </div>
@@ -32,8 +30,7 @@ class Navbar extends Component {
 }
 
 Navbar.propTypes = {
-  handleLogout: func,
-  pathname: string
+  handleLogout: func
 };
 
 const mapDispatchToProps = dispatch => ({

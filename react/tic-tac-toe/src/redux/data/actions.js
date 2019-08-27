@@ -5,7 +5,8 @@ export const actions = {
   GET_DATA_SUCCESS: '@@DATA/GET_DATA_SUCCESS',
   GET_DATA_FAILURE: '@@DATA/GET_DATA_FAILURE',
   CREATE_DATA_REQUEST: '@@CREATE_DATA_REQUEST',
-  CREATE_DATA_SUCCESS: '@@CREATE_DATA_SUCCESS'
+  CREATE_DATA_SUCCESS: '@@CREATE_DATA_SUCCESS',
+  CREATE_DATA_FAILURE: '@@CREATE_DATA_FAILURE'
 };
 
 const actionsCreators = {
@@ -13,21 +14,25 @@ const actionsCreators = {
     dispatch({ type: actions.GET_DATA_REQUEST });
     try {
       const response = await dataFetch.getMatches();
-      const { data } = response;
-      dispatch({ type: actions.GET_DATA_SUCCESS, data });
+      if (response.status === 200) {
+        const { data } = response;
+        return dispatch({ type: actions.GET_DATA_SUCCESS, data });
+      }
+      return dispatch({ type: actions.GET_DATA_FAILURE });
     } catch (error) {
-      dispatch({ type: actions.GET_DATA_FAILURE, error });
+      return dispatch({ type: actions.GET_DATA_FAILURE, error });
     }
   },
-  createData: (values) => async dispatch => {
+  createData: values => async dispatch => {
     dispatch({ type: actions.CREATE_DATA_REQUEST });
     try {
-      const token = localStorage.getItem('token');
-      await dataFetch.createMatches(values, token);
-      const response = await dataFetch.getMatches();
-      return response;
+      const res = await dataFetch.createMatches(values);
+      if (res.status === 200) {
+        return dispatch({ type: actions.CREATE_DATA_SUCCESS });
+      }
+      return dispatch({ type: actions.CREATE_DATA_FAILURE });
     } catch (error) {
-      return error;
+      return dispatch({ type: actions.CREATE_DATA_FAILURE });
     }
   }
 };

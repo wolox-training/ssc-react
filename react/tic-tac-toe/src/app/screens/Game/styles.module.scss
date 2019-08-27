@@ -23,18 +23,18 @@
   flex-direction: column;
   font-size: $text-detail;
   height: 100%;
-  right: 0;
   position: fixed;
+  right: 0;
   top: 70px;
   width: 300px;
 }
 
 .item-history {
-  text-align: center;
   border-radius: 3px;
   width: 140px;
   margin: 20px auto;
-  padding: 3px;
+  padding: 5px;
+  text-align: center;
 }
 
 .item-info {
@@ -43,10 +43,6 @@
 
 .info-container {
   padding: 0;
-}
-
-.spinner {
-  margin: 0 auto;
 }
 
 .status {

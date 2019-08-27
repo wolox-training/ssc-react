@@ -11,7 +11,7 @@ const RenderRoutes = ({ isPrivate, component: Component, authed, ...rest }) => {
         {...rest}
         // eslint-disable-next-line react/jsx-no-bind
         render={
-          props => authed === true
+          props => authed
             ? <Component {...props} />
             : <Redirect to={{ pathname: PATHS.login, state: { from: props.location } }} />
         }
@@ -23,9 +23,12 @@ const RenderRoutes = ({ isPrivate, component: Component, authed, ...rest }) => {
       {...rest}
       // eslint-disable-next-line react/jsx-no-bind
       render={
-        props => authed === false
-          ? <Component {...props} />
-          : <Redirect to={PATHS.game} />
+        props => {
+          if (authed && props.location.pathname !== '/') {
+            return <Component {...props} />;
+          }
+          return <Redirect to={PATHS.game} />;
+        }
       }
     />
   );

@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 
-import players from '../../../constants/player';
+import { PLAYER_TYPE } from '../../../constants/player';
 
-import styles from './styles.module.scss';
 import Board from './components/Board';
+import styles from './styles.module.scss';
 
 class Game extends Component {
   state = {
@@ -12,14 +12,14 @@ class Game extends Component {
     stepNumber: 0
   }
 
-  handleClick = i => () => {
+  handleClick = (i) => () => {
     const { xIsNext, stepNumber, history } = this.state;
     const current = history.slice(0, stepNumber + 1)[history.length - 1];
     const squares = current.squares.slice();
     if (squares[i]) {
       return;
     }
-    squares[i] = xIsNext ? players.x : players.o;
+    squares[i] = xIsNext ? PLAYER_TYPE.X : PLAYER_TYPE.O;
     this.setState({
       history: history.concat([{ squares }]),
       xIsNext: !xIsNext,
@@ -43,7 +43,7 @@ class Game extends Component {
       if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
         return squares[a];
       } else if (!squares.includes(null)) {
-        return players.tie;
+        return PLAYER_TYPE.TIE;
       }
     }
     return null;
@@ -60,7 +60,7 @@ class Game extends Component {
     const { xIsNext, history, stepNumber } = this.state;
     const current = history[stepNumber];
     const winner = this.calculateWinner(current.squares);
-    const status = winner ? `Winner:${winner}` : `Next player: ${xIsNext ? players.x : players.o}`;
+    const status = winner ? `Winner:${winner}` : `Next player: ${xIsNext ? PLAYER_TYPE.X : PLAYER_TYPE.O}`;
     const moves = history.map((i, move) => {
       const desc = move ? `Go to move #${move}` : 'Go to game start';
       return (

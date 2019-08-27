@@ -24,10 +24,5 @@ export const ROUTES = [
     component: Login,
     path: PATHS.login,
     exact: true
-  },
-  {
-    component: Matches,
-    path: PATHS.matches2,
-    exact: true
   }
 ];

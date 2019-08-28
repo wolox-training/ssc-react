@@ -5,8 +5,7 @@ import Matches from '../app/screens/Matches';
 export const PATHS = {
   game: '/game',
   login: '/',
-  matches: '/matches',
-  matches2: '/matches2'
+  matches: '/matches'
 };
 
 export const ROUTES = [
@@ -23,11 +22,6 @@ export const ROUTES = [
   {
     component: Login,
     path: PATHS.login,
-    exact: true
-  },
-  {
-    component: Matches,
-    path: PATHS.matches2,
     exact: true
   }
 ];

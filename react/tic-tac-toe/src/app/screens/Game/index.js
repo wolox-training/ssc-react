@@ -9,7 +9,8 @@ class Game extends Component {
   state = {
     history: [{ squares: Array(9).fill(null) }],
     xIsNext: true,
-    stepNumber: 0
+    stepNumber: 0,
+    winner: null
   }
 
   handleClick = (i) => () => {
@@ -20,10 +21,12 @@ class Game extends Component {
       return;
     }
     squares[i] = xIsNext ? PLAYER_TYPE.X : PLAYER_TYPE.O;
+    const winner = this.calculateWinner(squares);
     this.setState({
       history: history.concat([{ squares }]),
       xIsNext: !xIsNext,
-      stepNumber: history.length
+      stepNumber: history.length,
+      winner
     });
   }
 
@@ -57,9 +60,8 @@ class Game extends Component {
   }
 
   render() {
-    const { xIsNext, history, stepNumber } = this.state;
+    const { xIsNext, history, stepNumber, winner } = this.state;
     const current = history[stepNumber];
-    const winner = this.calculateWinner(current.squares);
     const status = winner ? `Winner:${winner}` : `Next player: ${xIsNext ? PLAYER_TYPE.X : PLAYER_TYPE.O}`;
     const moves = history.map((i, move) => {
       const desc = move ? `Go to move #${move}` : 'Go to game start';

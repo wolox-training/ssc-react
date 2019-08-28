@@ -5,8 +5,7 @@ import Matches from '../app/screens/Matches';
 export const PATHS = {
   game: '/game',
   login: '/',
-  matches: '/matches',
-  matches2: '/matches2'
+  matches: '/matches'
 };
 
 export const ROUTES = [

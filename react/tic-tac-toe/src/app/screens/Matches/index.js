@@ -4,7 +4,7 @@ import { arrayOf, func, bool } from 'prop-types';
 
 import dataActions from '../../../redux/data/actions';
 import { matchesPropsTypes } from '../../../constants/propsTypes';
-import calculatePercent from '../../../utils/calcultePercent';
+import { calculatePercent } from '../../../utils/calculatePercent';
 
 import styles from './styles.module.scss';
 import Layout from './components/Layout';

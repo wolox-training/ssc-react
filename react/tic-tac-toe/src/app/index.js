@@ -67,7 +67,7 @@ const mapDispatchToProps = dispatch => ({
 });
 
 const mapStateToProps = state => ({
-  authed: state.login.isUserLoggedIn
+  authed: state.login.isUserLoggedin
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

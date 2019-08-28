@@ -26,9 +26,9 @@ class Board extends Component {
     if (winner === PLAYER_TYPE.TIE) {
       winnerForSend = PLAYER_TYPE.TIE;
     } else if (winner === PLAYER_TYPE.X) {
-      winnerForSend = [PLAYERS.playerOne];
+      winnerForSend = PLAYERS.playerOne;
     } else if (winner === PLAYER_TYPE.O) {
-      winnerForSend = [PLAYERS.playerTwo];
+      winnerForSend = PLAYERS.playerTwo;
     }
     const values = {
       [PLAYERS.playerOne]: NAME.PLAYER_ONE,

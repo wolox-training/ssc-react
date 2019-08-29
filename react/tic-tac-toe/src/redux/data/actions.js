@@ -14,6 +14,7 @@ const actionsCreators = {
     dispatch({ type: actions.GET_DATA_REQUEST });
     try {
       const response = await dataFetch.getMatches();
+      console.log(response);
       if (response.status === 200) {
         const { data } = response;
         return dispatch({ type: actions.GET_DATA_SUCCESS, data });

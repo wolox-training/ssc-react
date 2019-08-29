@@ -1,5 +1,3 @@
-import { wrapService } from 'redux-recompose';
-
 import api from '../config/api';
 
 const service = {
@@ -8,4 +6,4 @@ const service = {
   createMatches: values => api.post('/matches', values)
 };
 
-export default wrapService(service, 'soccer');
+export default service;

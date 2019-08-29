@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { func, bool } from 'prop-types';
 
-import LoginActions from '../../../redux/login/actions';
+import MatchesService from '../../../services/MatchesService';
 import Logo from '../../assets/LogoWolox.png';
 
 import styles from './styles.module.scss';
@@ -34,7 +34,7 @@ Login.propTypes = {
 };
 
 const mapDispatchToProps = dispatch => ({
-  handleOnLogin: values => dispatch(LoginActions.onLogin(values))
+  handleOnLogin: values => dispatch(MatchesService.onLogin(values))
 });
 
 const mapStateToProps = state => ({

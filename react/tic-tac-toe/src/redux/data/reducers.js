@@ -1,16 +1,9 @@
-import { createReducer, completeReducer, completeState } from 'redux-recompose';
-
-import { actions } from './actions';
+import { createReducer, completeState } from 'redux-recompose';
 
 const stateDescription = {
-  data: [],
-  isUserLoggedin: false
+  data: []
 };
 
 const initialState = completeState(stateDescription);
 
-const game = {
-  primaryActions: [actions.GET_DATA, actions.CREATE_DATA, actions.ON_LOGIN]
-};
-
-export default createReducer(initialState, completeReducer(game));
+export default createReducer(initialState, {});

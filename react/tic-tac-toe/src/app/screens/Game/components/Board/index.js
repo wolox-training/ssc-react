@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react';
 import { arrayOf, func, string } from 'prop-types';
 import { connect } from 'react-redux';
 
-import dataActions from '../../../../../redux/data/actions';
+import MatchesService from '../../../../../services/MatchesService';
 import { PLAYERS, PLAYER_TYPE, NAME } from '../../../../../constants/player';
 import Square from '../Square';
 
@@ -73,7 +73,7 @@ Board.propTypes = {
 };
 
 const mapDispatchToProps = dispatch => ({
-  handleCreateMatch: (values) => dispatch(dataActions.createData(values))
+  handleCreateMatch: (values) => dispatch(MatchesService.createMatches(values))
 });
 
 export default connect(null, mapDispatchToProps)(Board);

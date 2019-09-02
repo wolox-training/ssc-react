@@ -1,13 +1,14 @@
 import { createTypes, completeTypes, withPostSuccess } from 'redux-recompose';
 
 import dataFetch from '../../services/MatchesService';
+import { TARGETS } from '../../constants/targets';
 
 export const actions = createTypes(completeTypes(['ON_LOGIN'], ['SET_AUTH', 'ON_LOGOUT']), '@@SOCCER');
 
 const actionsCreators = {
   onLogin: values => ({
     type: actions.ON_LOGIN,
-    target: 'setToken',
+    target: TARGETS.setToken,
     service: dataFetch.onLogin,
     payload: values,
     injections: [
@@ -15,18 +16,18 @@ const actionsCreators = {
         localStorage.setItem('token', response.data.token);
         dispatch({
           type: actions.SET_AUTH,
-          target: 'isUserLoggedin'
+          target: TARGETS.isUserLoggedin
         });
       })
     ]
   }),
   setAuth: () => ({
     type: actions.SET_AUTH,
-    target: 'isUserLoggedin'
+    target: TARGETS.isUserLoggedin
   }),
   logOut: () => ({
     type: actions.ON_LOGOUT,
-    target: 'isUserLoggedin'
+    target: TARGETS.isUserLoggedin
   })
 };
 

@@ -11,7 +11,7 @@ const RenderRoutes = ({ isPrivate, component: Component, authed, ...rest }) => (
     render={
       props => {
         // eslint-disable-next-line no-extra-parens
-        if ((!authed && !isPrivate) || (isPrivate && authed) || (authed && props.location.pathname !== '/')) {
+        if ((!authed && !isPrivate) || (isPrivate && authed) || (authed && props.location.pathname !== PATHS.login)) {
           return <Component {...props} />;
         }
         return <Redirect to={isPrivate ? { pathname: PATHS.login, state: { from: props.location } } : PATHS.game} />;

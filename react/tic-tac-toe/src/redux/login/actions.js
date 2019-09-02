@@ -2,7 +2,7 @@ import { createTypes, completeTypes, withPostSuccess } from 'redux-recompose';
 
 import dataFetch from '../../services/MatchesService';
 
-export const actions = createTypes(completeTypes(['ON_LOGIN', 'SET_AUTH', 'ON_LOGOUT']), '@@SOCCER');
+export const actions = createTypes(completeTypes(['ON_LOGIN'], ['SET_AUTH', 'ON_LOGOUT']), '@@SOCCER');
 
 const actionsCreators = {
   onLogin: values => ({

@@ -10,7 +10,7 @@ const stateDescription = {
 const initialState = completeState(stateDescription);
 
 const game = {
-  primaryActions: [actions.GET_DATA, actions.CREATE_DATA, actions.ON_LOGIN]
+  primaryActions: [actions.GET_DATA, actions.CREATE_DATA]
 };
 
 export default createReducer(initialState, completeReducer(game));

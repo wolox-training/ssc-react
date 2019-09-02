@@ -2,7 +2,7 @@ import { createTypes, completeTypes } from 'redux-recompose';
 
 import FetchService from '../../services/MatchesService';
 
-export const actions = createTypes(completeTypes(['GET_DATA', 'CREATE_DATA', 'ON_LOGIN', 'SET_AUTH']), '@@SOCCER');
+export const actions = createTypes(completeTypes(['GET_DATA', 'CREATE_DATA']), '@@SOCCER');
 
 const actionsCreators = {
   getData: () => ({

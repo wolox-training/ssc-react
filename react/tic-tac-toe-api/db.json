@@ -6,6 +6,89 @@
       "winner": "player_one",
       "createdAt": "2019-08-28T19:00:00.663Z",
       "id": 1
+    },
+    {
+      "player_one": "Tic",
+      "player_two": "Tac",
+      "winner": "player_two",
+      "createdAt": "2019-08-29T16:37:16.527Z",
+      "id": 2
+    },
+    {
+      "player_one": "Tic",
+      "player_two": "Tac",
+      "winner": "player_one",
+      "createdAt": "2019-08-29T19:12:14.100Z",
+      "id": 3
+    },
+    {
+      "player_one": "Tic",
+      "player_two": "Tac",
+      "winner": "player_two",
+      "createdAt": "2019-08-29T19:12:47.734Z",
+      "id": 4
+    },
+    {
+      "player_one": "Tic",
+      "player_two": "Tac",
+      "winner": "player_one",
+      "createdAt": "2019-08-29T20:13:08.675Z",
+      "id": 5
+    },
+    {
+      "player_one": "Tic",
+      "player_two": "Tac",
+      "winner": "Tie",
+      "createdAt": "2019-08-29T20:13:29.193Z",
+      "id": 6
+    },
+    {
+      "player_one": "Tic",
+      "player_two": "Tac",
+      "winner": "player_two",
+      "createdAt": "2019-08-29T20:13:53.414Z",
+      "id": 7
+    },
+    {
+      "player_one": "Tic",
+      "player_two": "Tac",
+      "winner": "player_one",
+      "createdAt": "2019-08-30T15:14:55.532Z",
+      "id": 8
+    },
+    {
+      "player_one": "Tic",
+      "player_two": "Tac",
+      "winner": "player_two",
+      "createdAt": "2019-08-30T15:15:05.004Z",
+      "id": 9
+    },
+    {
+      "player_one": "Tic",
+      "player_two": "Tac",
+      "createdAt": "2019-08-30T15:15:54.927Z",
+      "id": 10
+    },
+    {
+      "player_one": "Tic",
+      "player_two": "Tac",
+      "winner": "X",
+      "createdAt": "2019-08-30T15:19:06.691Z",
+      "id": 11
+    },
+    {
+      "player_one": "Tic",
+      "player_two": "Tac",
+      "winner": "Tie",
+      "createdAt": "2019-08-30T15:19:24.950Z",
+      "id": 12
+    },
+    {
+      "player_one": "Tic",
+      "player_two": "Tac",
+      "winner": "player_one",
+      "createdAt": "2019-08-30T15:22:38.020Z",
+      "id": 13
     }
   ],
   "users": [

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { arrayOf, func, bool } from 'prop-types';
 
-import dataActions from '../../../redux/data/actions';
+import MatchesService from '../../../services/MatchesService';
 import { matchesPropsTypes } from '../../../constants/propsTypes';
 import { calculatePercent } from '../../../utils/calculatePercent';
 
@@ -39,7 +39,7 @@ Matches.propTypes = {
 };
 
 const mapDispatchToProps = dispatch => ({
-  handleGetData: () => dispatch(dataActions.getData())
+  handleGetData: () => dispatch(MatchesService.getMatches())
 });
 
 const mapStateToProps = state => ({

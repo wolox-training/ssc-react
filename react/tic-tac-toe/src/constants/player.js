@@ -1,9 +1,9 @@
 export const PLAYERS = {
   playerOne: 'player_one',
   playerTwo: 'player_two',
-  x: 'X',
-  o: 'O',
-  tie: 'Tie',
+  X: 'player_one',
+  O: 'player_two',
+  Tie: 'Tie',
   names: {
     p1: 'Tic',
     p2: 'Toe'
@@ -18,5 +18,5 @@ export const NAME = {
 export const PLAYER_TYPE = {
   X: 'X',
   O: 'O',
-  TIE: 'Tie'
+  Tie: 'Tie'
 };

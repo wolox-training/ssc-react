@@ -16,7 +16,7 @@ export function calculateWinner(squares) {
     if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
       return squares[a];
     } else if (!squares.includes(null)) {
-      return PLAYER_TYPE.TIE;
+      return PLAYER_TYPE.Tie;
     }
   }
   return null;

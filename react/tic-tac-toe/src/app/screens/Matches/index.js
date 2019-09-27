@@ -44,7 +44,7 @@ const mapDispatchToProps = dispatch => ({
 
 const mapStateToProps = state => ({
   data: state.game.data,
-  loading: state.game.loading
+  loading: state.game.dataLoading
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Matches);

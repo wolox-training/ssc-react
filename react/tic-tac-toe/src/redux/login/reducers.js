@@ -1,33 +1,31 @@
+import { createReducer, completeReducer, completeState } from 'redux-recompose';
+
 import { actions } from './actions';
 
-const initialState = {
-  isUserLoggedIn: false,
-  loading: false,
-  isUserError: false
+const stateDescription = {
+  isUserLoggedin: false
 };
 
-const login = (state = initialState, action) => {
-  switch (action.type) {
-    case actions.LOGIN_REQUEST:
+const initialState = completeState(stateDescription);
+
+const login = {
+  primaryActions: [actions.ON_LOGIN],
+  override: {
+    [actions.SET_AUTH]: (state, action) => {
+      const hasToken = !!localStorage.getItem('token');
       return {
         ...state,
-        loading: true
+        [action.target]: hasToken
       };
-    case actions.LOGIN_SUCCESS:
+    },
+    [actions.ON_LOGOUT]: (state, action) => {
+      localStorage.removeItem('token');
       return {
         ...state,
-        loading: false,
-        isUserLoggedIn: action.hasToken
+        [action.target]: false
       };
-    case actions.LOGIN_FAILURE:
-      return {
-        ...state,
-        isUserLoggedIn: action.hasToken,
-        isUserError: action.isError
-      };
-    default:
-      return state;
+    }
   }
 };
 
-export default login;
+export default createReducer(initialState, completeReducer(login));

@@ -3,7 +3,7 @@ import { arrayOf, func, string } from 'prop-types';
 import { connect } from 'react-redux';
 
 import dataActions from '../../../../../redux/data/actions';
-import { PLAYERS, PLAYER_TYPE, NAME } from '../../../../../constants/player';
+import { PLAYERS, NAME } from '../../../../../constants/player';
 import Square from '../Square';
 
 import styles from './styles.module.scss';
@@ -22,14 +22,7 @@ class Board extends Component {
 
   createNewMatch = winner => {
     const { handleCreateMatch } = this.props;
-    let winnerForSend = '';
-    if (winner === PLAYER_TYPE.TIE) {
-      winnerForSend = PLAYER_TYPE.TIE;
-    } else if (winner === PLAYER_TYPE.X) {
-      winnerForSend = [PLAYERS.playerOne];
-    } else if (winner === PLAYER_TYPE.O) {
-      winnerForSend = [PLAYERS.playerTwo];
-    }
+    const winnerForSend = PLAYERS[winner];
     const values = {
       [PLAYERS.playerOne]: NAME.PLAYER_ONE,
       [PLAYERS.playerTwo]: NAME.PLAYER_TWO,

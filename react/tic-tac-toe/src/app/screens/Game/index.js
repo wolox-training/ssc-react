@@ -1,61 +1,72 @@
-import React, { Component, Fragment } from 'react';
-import Spinner from 'react-spinkit';
-import { connect } from 'react-redux';
-import { arrayOf, func, bool } from 'prop-types';
+import React, { Component } from 'react';
 
-import { matchesPropsTypes } from '../../../constants/propsTypes';
-import dataActions from '../../../redux/data/actions';
+import { PLAYER_TYPE } from '../../../constants/player';
+import { calculateWinner } from '../../../utils/calculateWinner';
 
-import Matches from './components/Matches';
-import styles from './styles.module.scss';
 import Board from './components/Board';
+import styles from './styles.module.scss';
+
 
 class Game extends Component {
-  componentDidMount() {
-    const { handleGetData } = this.props;
-    handleGetData();
+  state = {
+    history: [{ squares: Array(9).fill(null) }],
+    xIsNext: true,
+    stepNumber: 0,
+    winner: null
+  }
+
+  handleClick = (i) => () => {
+    const { xIsNext, stepNumber, history } = this.state;
+    const current = history.slice(0, stepNumber + 1)[history.length - 1];
+    const squares = current.squares.slice();
+    if (squares[i]) {
+      return;
+    }
+    squares[i] = xIsNext ? PLAYER_TYPE.X : PLAYER_TYPE.O;
+    const winner = calculateWinner(squares);
+    this.setState({
+      history: history.concat([{ squares }]),
+      xIsNext: !xIsNext,
+      stepNumber: history.length,
+      winner
+    });
+  }
+
+  jumpTo = step => () => {
+    this.setState({
+      stepNumber: step,
+      xIsNext: step % 2 === 0
+    });
   }
 
   render() {
-    const { data, loading } = this.props;
+    const { xIsNext, history, stepNumber, winner } = this.state;
+    const current = history[stepNumber];
+    const status = winner ? `Winner:${winner}` : `Next player: ${xIsNext ? PLAYER_TYPE.X : PLAYER_TYPE.O}`;
+    const moves = history.map((i, move) => {
+      const desc = move ? `Go to move #${move}` : 'Go to game start';
+      return (
+        <li key={desc} className={styles.itemHistory}>
+          <button type="button" onClick={this.jumpTo(move)}>{desc}</button>
+        </li>
+      );
+    });
     return (
       <div className={styles.game}>
         <div className={styles.gameBoard}>
-          <Board />
+          <Board
+            squares={current.squares}
+            onClick={this.handleClick}
+            winner={winner}
+          />
         </div>
         <div className={styles.gameInfo}>
-          {
-            loading
-              ? <Spinner name="circle" fadeIn="none" />
-              : (
-                <Fragment>
-                  <h1 className={styles.titleInfo}>Matches: </h1>
-                  <ol className={styles.infoContainer}>{ data.map(Matches) }</ol>
-                </Fragment>
-              )
-          }
+          <h2 className={styles.status}>{status}</h2>
+          <ol className={styles.infoContainer}>{ moves }</ol>
         </div>
       </div>
     );
   }
 }
 
-Game.propTypes = {
-  data: arrayOf(matchesPropsTypes).isRequired,
-  handleGetData: func.isRequired,
-  loading: bool
-};
-
-const mapDispatchToProps = dispatch => ({
-  handleGetData: () => dispatch(dataActions.getData())
-});
-
-const mapStateToProps = state => ({
-  data: state.game.data,
-  loading: state.game.loading
-});
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Game);
+export default Game;

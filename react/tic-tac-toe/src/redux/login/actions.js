@@ -14,16 +14,21 @@ const actionsCreators = {
       const res = await dataFetch.onLogin(values);
       if (res.status === 200) {
         localStorage.setItem('token', res.data.token);
-        return dispatch({ type: actions.SET_AUTH, hasToken: true, isError: false });
+        return dispatch({ type: actions.LOGIN_SUCCESS, hasToken: true, isError: false });
       }
-      return dispatch({ type: actions.SET_AUTH, hasToken: false, isError: true });
+      return dispatch({ type: actions.LOGIN_FAILURE, hasToken: false, isError: true });
     } catch (error) {
-      return dispatch({ type: actions.SET_AUTH, hasToken: false, isError: true });
+      return dispatch({ type: actions.LOGIN_FAILURE, hasToken: false, isError: true });
     }
   },
   setAuth: () => dispatch => {
     const hasToken = !!localStorage.getItem('token');
-    dispatch({ type: actions.SET_AUTH, hasToken });
+    dispatch({ type: actions.LOGIN_SUCCESS, hasToken, isError: false });
+    return true;
+  },
+  logOut: () => dispatch => {
+    localStorage.removeItem('token');
+    dispatch({ type: actions.LOGIN_FAILURE, hasToken: false, isError: false });
   }
 };
 

@@ -1,0 +1,45 @@
+@import 'src/scss/colors.scss';
+@import 'src//scss/fonts';
+
+.button-logout {
+  background: $detail-green;
+  box-shadow: -1px 1px 5px 2px $border-grey;
+  border-radius: 7px;
+  color: $white;
+  cursor: pointer;
+  font-size: $text-button;
+  font-weight: 600;
+  padding: 12px 20px;
+
+  &:hover {
+    transform: scale(1.02, 1.02)
+  }
+}
+
+.navbar-container {
+  align-items: center;
+  background: $white;
+  border-bottom: 3px solid $primary-color;
+  display: flex;
+  height: 70px;
+  justify-content: space-around;
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+.image-logo {
+  height: 100%;
+}
+
+.item-nav {
+  color: $detail-black;
+  font-size: $text-detail;
+  font-weight: 500;
+  margin: 0 25px;
+  text-transform: capitalize;
+
+  &:hover {
+    color: $dark-gray;
+  }
+}

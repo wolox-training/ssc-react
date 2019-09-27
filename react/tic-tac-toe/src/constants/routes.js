@@ -1,17 +1,27 @@
 import Game from '../app/screens/Game';
 import Login from '../app/screens/Login';
+import Matches from '../app/screens/Matches';
+
+export const PATHS = {
+  game: '/game',
+  login: '/',
+  matches: '/matches'
+};
 
 export const ROUTES = [
   {
     component: Game,
-    path: '/game',
+    path: PATHS.game,
     private: true
   },
-
+  {
+    component: Matches,
+    path: PATHS.matches,
+    private: true
+  },
   {
     component: Login,
-    path: '/',
-    private: false
+    path: PATHS.login,
+    exact: true
   }
 ];
-
